@@ -1,0 +1,91 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cmx435tlhihlb"]
+
+[ext_resource type="FontFile" uid="uid://jk5v8ngisplf" path="res://fonts/kenney_pixel.ttf" id="1_lr16k"]
+[ext_resource type="StyleBox" uid="uid://xc75jyfmxm5c" path="res://main_style_box.tres" id="2_45o3y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgjyd"]
+bg_color = Color(0.219608, 0.219608, 0.188235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.156863, 0.133333, 0.14902, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ncka"]
+bg_color = Color(0.364706, 0.380392, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.27451, 0.0156863, 0.145098, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulqwg"]
+bg_color = Color(0.0784314, 0.0862745, 0.12549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.27451, 0.0156863, 0.145098, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q0nr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_if4fa"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfeab"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+anti_aliasing = false
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_lr16k")
+Button/styles/disabled = SubResource("StyleBoxFlat_cgjyd")
+Button/styles/hover = SubResource("StyleBoxFlat_6ncka")
+Button/styles/normal = ExtResource("2_45o3y")
+Button/styles/pressed = SubResource("StyleBoxFlat_ulqwg")
+Control/fonts/font = ExtResource("1_lr16k")
+ItemList/styles/cursor = SubResource("StyleBoxFlat_8q0nr")
+ItemList/styles/panel = ExtResource("2_45o3y")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 3
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_lr16k")
+LineEdit/font_sizes/font_size = 32
+LineEdit/fonts/font = ExtResource("1_lr16k")
+MarginContainer/constants/margin_bottom = 3
+MarginContainer/constants/margin_left = 3
+MarginContainer/constants/margin_right = 3
+MarginContainer/constants/margin_top = 3
+Panel/styles/panel = ExtResource("2_45o3y")
+PanelContainer/styles/panel = ExtResource("2_45o3y")
+ProgressBar/font_sizes/font_size = 24
+ProgressBar/fonts/font = ExtResource("1_lr16k")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_if4fa")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_gfeab")
+TabBar/font_sizes/font_size = 32
+TabBar/fonts/font = ExtResource("1_lr16k")
+TextEdit/font_sizes/font_size = 32
+TextEdit/fonts/font = ExtResource("1_lr16k")
+Tree/font_sizes/font_size = 32
+Tree/fonts/font = ExtResource("1_lr16k")

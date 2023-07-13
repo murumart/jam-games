@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bkxocjeln1suq"]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_wgwdl"]
+[ext_resource type="Texture2D" uid="uid://ctsuv62fnn0cb" path="res://art/fireball.png" id="2_0pl8s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nijpq"]
+atlas = ExtResource("2_0pl8s")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_wgwdl")
+name = "fireball"
+texture = SubResource("AtlasTexture_nijpq")
+count = 1
+healing = 0.0
+shield = 0.0
+equip = true

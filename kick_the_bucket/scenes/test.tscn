@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b28yb7cdpj8cr"]
+
+[ext_resource type="TileSet" uid="uid://bh544w7m8phqk" path="res://main_tile_set.tres" id="1_615wv"]
+[ext_resource type="PackedScene" uid="uid://m8ejkbet4i7l" path="res://scenes/enemies/god_eye.tscn" id="1_ofebv"]
+[ext_resource type="PackedScene" uid="uid://blykg6uy2m0bh" path="res://scenes/enemies/concrete.tscn" id="2_e1s23"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_al7xy"]
+
+[node name="Test" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_615wv")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 0, 65536, 0, 2, 131072, 0, 2, 196608, 0, 2, 262144, 0, 2, 327680, 0, 2, 393216, 65536, 2, 458752, 0, 2, 524288, 0, 4, 1, 131072, 6, 2, 131072, 6, 3, 131072, 6, 4, 131072, 6, 5, 131072, 6, 6, 131072, 6, 7, 131072, 6, 8, 131072, 6, 9, 131072, 6, 10, 131072, 6, 11, 131072, 6, 12, 196608, 0, 393217, 131072, 6, 393218, 131072, 6, 393219, 131072, 6, 393220, 131072, 6, 393221, 131072, 6, 393222, 131072, 6, 393223, 131072, 6, 393224, 131072, 6, 393225, 131072, 6, 393226, 131072, 6, 393227, 131072, 6, 393228, 196608, 4, 327692, 0, 2, 262156, 0, 2, 196620, 0, 2, 131084, 0, 2, 65548, 0, 2)
+
+[node name="GodEye" parent="." instance=ExtResource("1_ofebv")]
+visible = false
+position = Vector2(256, 239)
+burst = 24
+fire_delay = 1.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(270, 351)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_al7xy")
+
+[node name="Enemy" parent="." instance=ExtResource("2_e1s23")]
+position = Vector2(360, 276)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_e1s23")]
+position = Vector2(500, 215)

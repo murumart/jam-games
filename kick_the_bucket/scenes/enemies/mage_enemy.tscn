@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2u5f80c0txns"]
+
+[ext_resource type="Script" path="res://scenes/enemies/projectile_enemy.gd" id="1_cscd5"]
+[ext_resource type="Texture2D" uid="uid://bqq022rqpf5ax" path="res://art/mage_enemy.png" id="2_7bsii"]
+[ext_resource type="PackedScene" uid="uid://sa0d34bi7udq" path="res://scenes/projectiles/fireball.tscn" id="2_rkuu8"]
+[ext_resource type="PackedScene" uid="uid://dqbobfys5yosr" path="res://scenes/hitbox.tscn" id="3_sg1qb"]
+[ext_resource type="AudioStream" uid="uid://bgpiae4gmo41o" path="res://sounds/fireball.ogg" id="4_wk2gs"]
+[ext_resource type="AudioStream" uid="uid://bu13juq8bki6j" path="res://sounds/magedie.ogg" id="6_0yh6p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebrp3"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8hfy"]
+radius = 257.992
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ohcw4"]
+radius = 24.0
+
+[node name="MageEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_cscd5")
+PROJECTILE = ExtResource("2_rkuu8")
+speed = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ebrp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("2_7bsii")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_v8hfy")
+debug_color = Color(0, 0.6, 0.701961, 0.0509804)
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sg1qb")]
+collision_layer = 4
+target = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ohcw4")
+debug_color = Color(0.764706, 0.427451, 0.384314, 0.419608)
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wk2gs")
+volume_db = -6.651
+max_polyphony = 10
+
+[node name="DieSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_0yh6p")

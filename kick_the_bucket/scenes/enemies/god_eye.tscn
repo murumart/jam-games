@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://m8ejkbet4i7l"]
+
+[ext_resource type="Script" path="res://scenes/enemies/projectile_enemy.gd" id="1_k7nv1"]
+[ext_resource type="PackedScene" uid="uid://dn80w5kjtfrh6" path="res://scenes/projectiles/eye_bullet.tscn" id="2_1kc1u"]
+[ext_resource type="Texture2D" uid="uid://2iuywpqc7epy" path="res://art/god_eye.png" id="2_62glf"]
+[ext_resource type="Script" path="res://scenes/hurtbox.gd" id="3_fmehf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h0bre"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nlv0e"]
+radius = 946.104
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kx74t"]
+radius = 17.1172
+
+[node name="GodEye" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 32
+motion_mode = 1
+script = ExtResource("1_k7nv1")
+PROJECTILE = ExtResource("2_1kc1u")
+aim_type = 1
+burst = 9
+fire_delay = 0.4
+speed = 40
+health = 999.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("2_62glf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("CircleShape2D_h0bre")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_nlv0e")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -20)
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("3_fmehf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_kx74t")
+debug_color = Color(0.882353, 0.270588, 0.517647, 0.419608)

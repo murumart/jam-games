@@ -1,0 +1,275 @@
+[gd_scene load_steps=8 format=3 uid="uid://w28k60lskv1q"]
+
+[ext_resource type="Theme" uid="uid://cmx435tlhihlb" path="res://main_theme.tres" id="1_6q4xd"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="2_hteis"]
+[ext_resource type="Texture2D" uid="uid://d1ictd0sl20hb" path="res://art/ui/scroll.png" id="3_82g4u"]
+[ext_resource type="AudioStream" uid="uid://uj727h1dyhk" path="res://music/menu.ogg" id="3_dvlsx"]
+
+[sub_resource type="Animation" id="Animation_vvn6p"]
+resource_name = "scroll_open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scroll:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(24, 33), Vector2(653, 33), Vector2(653, 278)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scroll/ok:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scroll/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ssk3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scroll:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scroll/ok:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scroll/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4nh40"]
+_data = {
+"RESET": SubResource("Animation_ssk3h"),
+"scroll_open": SubResource("Animation_vvn6p")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_6q4xd")
+script = ExtResource("2_hteis")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.083
+anchor_right = 1.0
+anchor_bottom = 0.163
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Kick the Bucket"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+
+[node name="StartGameButton" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "start game"
+
+[node name="StoryButton" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "story"
+
+[node name="QuitGameButton" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "quit game"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "main volume"
+
+[node name="HSlider" type="HSlider" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="StoryContainer" type="PanelContainer" parent="Panel/CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="Panel/CenterContainer/StoryContainer"]
+layout_mode = 2
+text = "kick the bucket
+
+
+
+
+
+
+
+
+
+
+
+
+[close story]"
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/StoryContainer"]
+layout_mode = 2
+text = "it is the year 1212820.
+every soul has been tied to a bucket to control the populace
+and housing prices have been rising still.
+
+one brave asshole (you) has decided to sell cheap housing
+through the recent discovery of this endless hallway.
+
+sadly this prime property is being occupied by violent individuals.
+murder them and take what's yours."
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 312.0
+offset_top = 346.0
+offset_right = 774.0
+offset_bottom = 409.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "Kick the Bucket
+Murumart 20203"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dvlsx")
+autoplay = true
+
+[node name="Results" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scroll" type="NinePatchRect" parent="Results"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 94.0
+offset_right = 83.0
+offset_bottom = 127.0
+texture = ExtResource("3_82g4u")
+patch_margin_left = 10
+patch_margin_top = 17
+patch_margin_right = 14
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Label" type="Label" parent="Results/Scroll"]
+visible = false
+layout_mode = 0
+offset_left = 19.0
+offset_top = 23.0
+offset_right = 638.0
+offset_bottom = 255.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+text = "~Report~
+Your real estate empire gained %s empty rooms to sell.
+
+Sadly, you died for real, so your riches will be inherited by your [family member].
+
+Thanks for playing."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ok" type="Button" parent="Results/Scroll"]
+visible = false
+layout_mode = 0
+offset_left = 302.0
+offset_top = 236.0
+offset_right = 367.0
+offset_bottom = 264.0
+text = "ok
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Results"]
+libraries = {
+"": SubResource("AnimationLibrary_4nh40")
+}
+
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/StoryButton" to="Panel/CenterContainer/StoryContainer" method="show"]
+[connection signal="drag_ended" from="Panel/CenterContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_drag_ended"]
+[connection signal="pressed" from="Panel/CenterContainer/StoryContainer/CloseButton" to="Panel/CenterContainer/StoryContainer" method="hide"]
+[connection signal="pressed" from="Results/Scroll/ok" to="Results" method="hide"]

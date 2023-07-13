@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg2hlyl2ortp2"]
+
+[ext_resource type="Texture2D" uid="uid://xslp84a6th4e" path="res://art/bucket.png" id="1_s47l4"]
+[ext_resource type="Script" path="res://scenes/bucket.gd" id="1_siapy"]
+
+[sub_resource type="Animation" id="Animation_vmvfb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c6n7k"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -14), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o4g0g"]
+_data = {
+"RESET": SubResource("Animation_vmvfb"),
+"default": SubResource("Animation_c6n7k")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wusf"]
+size = Vector2(75, 59)
+
+[node name="Bucket" type="Node2D"]
+script = ExtResource("1_siapy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(0.304348, 0.259459)
+texture = ExtResource("1_s47l4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_o4g0g")
+}
+
+[node name="FoundMe" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FoundMe"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_1wusf")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://blykg6uy2m0bh"]
+
+[ext_resource type="Script" path="res://scenes/enemies/concrete.gd" id="1_lu4re"]
+[ext_resource type="Texture2D" uid="uid://bp78bg3h726wi" path="res://art/concrete.png" id="2_myn6m"]
+[ext_resource type="Script" path="res://scenes/hurtbox.gd" id="3_7fpog"]
+[ext_resource type="PackedScene" uid="uid://dqbobfys5yosr" path="res://scenes/hitbox.tscn" id="4_52c4s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q3t10"]
+radius = 21.095
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bdna2"]
+radius = 22.3607
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ef3rr"]
+radius = 25.0799
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7txs5"]
+radius = 300.734
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_lu4re")
+speed = 199
+health = 80.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q3t10")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_myn6m")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_7fpog")
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_bdna2")
+debug_color = Color(0.921569, 0, 0.27451, 0.231373)
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_52c4s")]
+collision_layer = 4
+target = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ef3rr")
+debug_color = Color(0, 0.643137, 0.313726, 0.00784314)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_7txs5")
+debug_color = Color(0, 0.317647, 0.701961, 0.329412)
+
+[node name="WorldCollision" type="RayCast2D" parent="."]
+target_position = Vector2(0, 26)
+collision_mask = 5
+hit_from_inside = true

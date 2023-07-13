@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://dnbjxpf2nccqm"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/projectile.gd" id="1_qyepl"]
+[ext_resource type="Texture2D" uid="uid://ctsuv62fnn0cb" path="res://art/fireball.png" id="2_siejh"]
+[ext_resource type="PackedScene" uid="uid://b7n76ft7pt8yk" path="res://scenes/hurtbox.tscn" id="3_4hkwx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qocfr"]
+atlas = ExtResource("2_siejh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_essp3"]
+atlas = ExtResource("2_siejh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pq4b"]
+atlas = ExtResource("2_siejh")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwpfd"]
+atlas = ExtResource("2_siejh")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuqgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qocfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_essp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pq4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwpfd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yp42u"]
+radius = 4.12311
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i24dh"]
+radius = 8.0
+
+[node name="Fireball" type="Node2D"]
+script = ExtResource("1_qyepl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_tuqgv")
+autoplay = "default"
+frame_progress = 0.42468
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_4hkwx")]
+collision_mask = 4
+damage = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_yp42u")
+
+[node name="WorldCollision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCollision"]
+shape = SubResource("CircleShape2D_i24dh")
+debug_color = Color(0, 0.333333, 0.392157, 0.419608)

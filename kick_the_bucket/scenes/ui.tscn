@@ -1,0 +1,229 @@
+[gd_scene load_steps=6 format=3 uid="uid://kuky0404ttbf"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_s4qm6"]
+[ext_resource type="Theme" uid="uid://cmx435tlhihlb" path="res://main_theme.tres" id="2_3s7cr"]
+[ext_resource type="Texture2D" uid="uid://cce5ipqsgumx7" path="res://art/ui/bucket_arrow.png" id="3_7dc3u"]
+[ext_resource type="Texture2D" uid="uid://ceo6lgmey8wn5" path="res://art/items/apple.png" id="4_dt0cv"]
+[ext_resource type="Texture2D" uid="uid://c2oiiy6pbag3n" path="res://art/sword.png" id="5_xthwh"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_s4qm6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_3s7cr")
+
+[node name="Bars" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 234.0
+offset_bottom = 94.0
+mouse_filter = 2
+
+[node name="Health" type="HBoxContainer" parent="Control/Bars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Bars/Health"]
+layout_mode = 2
+text = "HP:"
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/Bars/Health"]
+modulate = Color(0.501961, 1, 0.458824, 1)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 20.0
+value = 14.07
+show_percentage = false
+
+[node name="Shield" type="HBoxContainer" parent="Control/Bars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Bars/Shield"]
+layout_mode = 2
+text = "SHIELD:"
+
+[node name="Progress" type="Label" parent="Control/Bars/Shield"]
+modulate = Color(0.501961, 1, 0.458824, 1)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1200"
+horizontal_alignment = 1
+
+[node name="Ammo" type="HBoxContainer" parent="Control/Bars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Bars/Ammo"]
+layout_mode = 2
+text = "AMMO:"
+
+[node name="Progress" type="Label" parent="Control/Bars/Ammo"]
+modulate = Color(0.501961, 1, 0.458824, 1)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1200"
+horizontal_alignment = 1
+
+[node name="Status" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 669.0
+offset_top = 338.0
+offset_right = 770.0
+offset_bottom = 405.0
+alignment = 2
+
+[node name="Loading" type="Label" parent="Control/Status"]
+layout_mode = 2
+text = "Loading..."
+
+[node name="RoomLabel" type="Label" parent="Control/Status"]
+layout_mode = 2
+text = "room"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="Pivot" type="Node2D" parent="Control/CenterContainer/Control"]
+
+[node name="TextureRect" type="TextureRect" parent="Control/CenterContainer/Control/Pivot"]
+offset_left = 173.0
+offset_top = -21.0
+offset_right = 213.0
+offset_bottom = 19.0
+texture = ExtResource("3_7dc3u")
+
+[node name="DeathMessage" type="VBoxContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.214
+anchor_right = 1.0
+anchor_bottom = 0.759
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/DeathMessage"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.196078)
+theme_override_colors/font_outline_color = Color(0.447059, 0, 0.054902, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 98
+text = "YOU DIED!!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/DeathMessage"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.196078)
+theme_override_colors/font_outline_color = Color(0.447059, 0, 0.054902, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 1
+text = "But all is not over yet!!!"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/DeathMessage"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.196078)
+theme_override_colors/font_outline_color = Color(0.447059, 0, 0.054902, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 1
+text = "You have to..... Kick the Bucket!!!"
+horizontal_alignment = 1
+
+[node name="TrueDeathMessage" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "you have died and passed on for good."
+
+[node name="OptionsPanel" type="Panel" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 766.0
+offset_bottom = 396.0
+
+[node name="Opi" type="Label" parent="Control/OptionsPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 288.0
+offset_bottom = 37.0
+text = "Options menu - game paused"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsPanel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 58.0
+offset_right = 416.0
+offset_bottom = 358.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/OptionsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/OptionsPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "main volume"
+
+[node name="HSlider" type="HSlider" parent="Control/OptionsPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+scrollable = false
+
+[node name="Items" type="ItemList" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 320.0
+offset_right = 152.0
+offset_bottom = 401.0
+focus_mode = 0
+item_count = 2
+fixed_icon_size = Vector2i(16, 16)
+item_0/text = "apple"
+item_0/icon = ExtResource("4_dt0cv")
+item_1/text = "sword"
+item_1/icon = ExtResource("5_xthwh")
+
+[node name="GhostTimerLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "TIME LEFT: "
+horizontal_alignment = 1

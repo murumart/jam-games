@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://boskxy8lxba5m"]
+
+[ext_resource type="Texture2D" uid="uid://bt3tefmu7jjt5" path="res://art/blood.png" id="1_ih2wa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef4ra"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx6st"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh0i1"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icdkt"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw4ji"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mloc6"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb66c"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(64, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3vrk"]
+atlas = ExtResource("1_ih2wa")
+region = Rect2(96, 64, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_74hu7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef4ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx6st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh0i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icdkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw4ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mloc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb66c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3vrk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Blood" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_74hu7")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="queue_free"]

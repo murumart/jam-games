@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmaollncx2sjh"]
+
+[ext_resource type="Texture2D" uid="uid://cj1er34ckceq7" path="res://art/flies.png" id="1_g58pc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8skg"]
+atlas = ExtResource("1_g58pc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7kcv"]
+atlas = ExtResource("1_g58pc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2tm8"]
+atlas = ExtResource("1_g58pc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8au1t"]
+atlas = ExtResource("1_g58pc")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q87u1"]
+atlas = ExtResource("1_g58pc")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uutmp"]
+atlas = ExtResource("1_g58pc")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvldy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8skg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7kcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2tm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8au1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q87u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uutmp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Flies" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lvldy")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="queue_free"]

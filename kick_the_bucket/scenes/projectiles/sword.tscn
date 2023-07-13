@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://y1kmqo6cpm7i"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/sword.gd" id="1_rxnyg"]
+[ext_resource type="Script" path="res://scenes/hurtbox.gd" id="2_nwmc0"]
+[ext_resource type="Texture2D" uid="uid://c2oiiy6pbag3n" path="res://art/sword.png" id="3_7op35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btagl"]
+size = Vector2(50, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l553"]
+size = Vector2(51, 9)
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_rxnyg")
+speed = 600
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_nwmc0")
+damage = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_btagl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -2)
+rotation = 0.792061
+texture = ExtResource("3_7op35")
+
+[node name="WorldCollision" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCollision"]
+position = Vector2(15.5, 0.5)
+shape = SubResource("RectangleShape2D_3l553")
+debug_color = Color(0.290196, 0.501961, 0.984314, 0.419608)

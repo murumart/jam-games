@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://mlmbt4j6h1or"]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_gdjg1"]
+[ext_resource type="Texture2D" uid="uid://dwsd5tpfade2n" path="res://art/items/sniper.png" id="2_k5cnf"]
+
+[resource]
+script = ExtResource("1_gdjg1")
+name = &"sniper"
+texture = ExtResource("2_k5cnf")
+count = 1
+healing = 0.0
+shield = 0.0
+equip = true

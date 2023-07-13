@@ -1,0 +1,82 @@
+[gd_scene load_steps=18 format=3 uid="uid://dxar213ts878j"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_0gr28"]
+[ext_resource type="TileSet" uid="uid://bh544w7m8phqk" path="res://main_tile_set.tres" id="2_cmws1"]
+[ext_resource type="PackedScene" uid="uid://dta62aff40qgg" path="res://scenes/room.tscn" id="3_vgxi1"]
+[ext_resource type="PackedScene" uid="uid://dj68al1jokpp6" path="res://scenes/player.tscn" id="4_jyg8t"]
+[ext_resource type="PackedScene" uid="uid://c1wyg08qpmw1q" path="res://scenes/camera.tscn" id="5_yp5t4"]
+[ext_resource type="PackedScene" uid="uid://5l217qpo710w" path="res://scenes/box.tscn" id="6_2xw7e"]
+[ext_resource type="AudioStream" uid="uid://cgu5pfelyjlig" path="res://music/through.ogg" id="7_n4o0p"]
+[ext_resource type="Script" path="res://items/item.gd" id="7_u4wti"]
+[ext_resource type="Texture2D" uid="uid://ceo6lgmey8wn5" path="res://art/items/apple.png" id="8_bt052"]
+
+[sub_resource type="Gradient" id="Gradient_tvlst"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dbfxv"]
+gradient = SubResource("Gradient_tvlst")
+
+[sub_resource type="Gradient" id="Gradient_wjd4g"]
+offsets = PackedFloat32Array(0, 0.0767235, 0.377065, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0664846, 0.0664846, 0.0664846, 1, 0.169281, 0.22942, 0.379059, 1, 0.597933, 0.807774, 0.841507, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0ag6f"]
+gradient = SubResource("Gradient_wjd4g")
+
+[sub_resource type="Gradient" id="Gradient_lea0m"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_niiwo"]
+gradient = SubResource("Gradient_lea0m")
+
+[sub_resource type="Environment" id="Environment_0160p"]
+background_mode = 3
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_niiwo")
+
+[sub_resource type="Resource" id="Resource_ro224"]
+script = ExtResource("7_u4wti")
+name = &"apple"
+texture = ExtResource("8_bt052")
+count = 1
+healing = 5.0
+shield = 0.0
+equip = false
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_0gr28")
+normal_gradient = SubResource("GradientTexture1D_dbfxv")
+ghost_gradient = SubResource("GradientTexture1D_0ag6f")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0160p")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_cmws1")
+format = 2
+layer_0/name = "floor"
+layer_0/z_index = -1
+layer_1/name = "walls"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array()
+
+[node name="StartRoom" parent="." instance=ExtResource("3_vgxi1")]
+
+[node name="Player" parent="." instance=ExtResource("4_jyg8t")]
+position = Vector2(328, 288)
+
+[node name="Camera" parent="Player" instance=ExtResource("5_yp5t4")]
+
+[node name="Box" parent="." instance=ExtResource("6_2xw7e")]
+position = Vector2(128, 256)
+stored_item = SubResource("Resource_ro224")
+
+[node name="MUSIC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_n4o0p")
+autoplay = true
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="resurrected" from="Player" to="." method="_on_player_resurrected"]
