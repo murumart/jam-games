@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://rfy3wr20pkh4"]
+
+[ext_resource type="Script" path="res://scenes/autoload/ui_layer.gd" id="1_km663"]
+
+[sub_resource type="SystemFont" id="SystemFont_xf6pj"]
+font_names = PackedStringArray("Monospace")
+font_weight = 500
+subpixel_positioning = 0
+
+[node name="UiLayer" type="CanvasLayer"]
+script = ExtResource("1_km663")
+
+[node name="Dialbox" type="ColorRect" parent="."]
+visible = false
+offset_left = 40.0
+offset_top = 101.0
+offset_right = 197.0
+offset_bottom = 160.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialbox"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = SubResource("SystemFont_xf6pj")
+bbcode_enabled = true
+text = "hi hi ho ho"
+scroll_active = false

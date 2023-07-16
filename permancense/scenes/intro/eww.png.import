@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3xrfd7phx5yt"
-path="res://.godot/imported/alien_tiles.png-fca759f5388623de9c4403b3038d62e3.ctex"
+uid="uid://bj8y2kf4i46oi"
+path="res://.godot/imported/eww.png-bccf2c519640667647e1f27c8249e012.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/tilesets/alien_tiles.png"
-dest_files=["res://.godot/imported/alien_tiles.png-fca759f5388623de9c4403b3038d62e3.ctex"]
+source_file="res://scenes/intro/eww.png"
+dest_files=["res://.godot/imported/eww.png-bccf2c519640667647e1f27c8249e012.ctex"]
 
 [params]
 

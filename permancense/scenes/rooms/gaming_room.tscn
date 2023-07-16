@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw5qjhihrue2"]
+
+[ext_resource type="Script" path="res://scenes/rooms/room.gd" id="1_3f88g"]
+[ext_resource type="Texture2D" uid="uid://ccbg0tc0c2gmn" path="res://scenes/rooms/gaming.png" id="1_7id8x"]
+[ext_resource type="PackedScene" uid="uid://cryukuldlow1w" path="res://scenes/player/player.tscn" id="2_1bj8t"]
+[ext_resource type="AudioStream" uid="uid://c08as6i73q86q" path="res://music/god.ogg" id="2_rgpq6"]
+[ext_resource type="PackedScene" uid="uid://c7oiug0mhkyv7" path="res://scenes/util/dialogue_area.tscn" id="5_rqq1o"]
+[ext_resource type="PackedScene" uid="uid://ijujnhrf5o61" path="res://scenes/stinky.tscn" id="6_rnhsu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rwkd"]
+size = Vector2(20, 18)
+
+[node name="GamingRoom" type="Node2D"]
+script = ExtResource("1_3f88g")
+music = ExtResource("2_rgpq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(59, 39)
+texture = ExtResource("1_7id8x")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("2_1bj8t")]
+position = Vector2(103, 104)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(83, 99, 164, 97, 176, 112, 68, 111)
+
+[node name="DialogueArea" parent="." instance=ExtResource("5_rqq1o")]
+position = Vector2(99, 85)
+dialogue = "it's computer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_0rwkd")
+
+[node name="Stinky" parent="." instance=ExtResource("6_rnhsu")]
+position = Vector2(166, 93)

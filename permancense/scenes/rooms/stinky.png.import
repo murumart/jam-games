@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw1lqsliuy34a"
-path="res://.godot/imported/alien_step.png-41dc10ccc0508156363ddc362fe26b68.ctex"
+uid="uid://bvmonitxu5dde"
+path="res://.godot/imported/stinky.png-d6933f3f72e233aefa2618b99ca90896.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/tilesets/alien_step.png"
-dest_files=["res://.godot/imported/alien_step.png-41dc10ccc0508156363ddc362fe26b68.ctex"]
+source_file="res://scenes/rooms/stinky.png"
+dest_files=["res://.godot/imported/stinky.png-d6933f3f72e233aefa2618b99ca90896.ctex"]
 
 [params]
 

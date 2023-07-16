@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://ijujnhrf5o61"]
+
+[ext_resource type="Texture2D" uid="uid://bvmonitxu5dde" path="res://scenes/rooms/stinky.png" id="1_sbcwq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xisa6"]
+atlas = ExtResource("1_sbcwq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mptfq"]
+atlas = ExtResource("1_sbcwq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0mrh"]
+atlas = ExtResource("1_sbcwq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls4tb"]
+atlas = ExtResource("1_sbcwq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vywr"]
+atlas = ExtResource("1_sbcwq")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypsi1"]
+atlas = ExtResource("1_sbcwq")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a5bkx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xisa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mptfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0mrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls4tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vywr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypsi1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Stinky" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_a5bkx")
+autoplay = "default"
+frame_progress = 0.374184
