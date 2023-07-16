@@ -20,6 +20,11 @@ config/icon="res://assets/icon.png"
 [autoload]
 
 GLB="*res://scenes/autoload/global.gd"
+SAV="*res://scenes/autoload/save.gd"
+
+[debug]
+
+gdscript/warnings/integer_division=0
 
 [display]
 

@@ -22,4 +22,10 @@ func get_img() -> Image:
 		for j in range(WSIZEX / 2 - CCLEAR, WSIZEX / 2 + CCLEAR):
 			if (CENTER - Vector2i(i, j)).length() < CCLEAR:
 				img.set_pixel(i, j, Color.BLACK)
+	for i in WSIZEX:
+		img.set_pixel(i, 0, Color.BLACK)
+		img.set_pixel(i, WSIZEY - 1, Color.BLACK)
+	for i in WSIZEY:
+		img.set_pixel(0, i, Color.BLACK)
+		img.set_pixel(WSIZEX - 1, i, Color.BLACK)
 	return img

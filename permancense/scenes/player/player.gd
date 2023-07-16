@@ -6,6 +6,7 @@ var acceleration := 800
 
 var input := Vector2()
 
+
 func _physics_process(delta: float) -> void:
 	input = Input.get_vector("left", "right", "up", "down")
 	
@@ -14,4 +15,4 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(velocity.round(), delta)
 	
 	move_and_slide()
-	#position = position.move_toward(position.round(), delta)
+
