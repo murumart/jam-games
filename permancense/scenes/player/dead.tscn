@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7wcytxay6r1v"]
+
+[ext_resource type="Texture2D" uid="uid://cimrjdc47t782" path="res://scenes/player/dead.png" id="1_aosh7"]
+[ext_resource type="AudioStream" uid="uid://cuupd7pd5wn2r" path="res://assets/sounds/death1.ogg" id="2_nhlfi"]
+[ext_resource type="AudioStream" uid="uid://1mw4vmbom6uw" path="res://assets/sounds/death2.ogg" id="3_s38xu"]
+[ext_resource type="AudioStream" uid="uid://vldx5788nwgt" path="res://assets/sounds/death3.ogg" id="4_q86yw"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_llgjo"]
+streams_count = 3
+stream_0/stream = ExtResource("2_nhlfi")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_s38xu")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_q86yw")
+stream_2/weight = 1.0
+
+[node name="Dead" type="Node2D" groups=["deaths"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -4)
+texture = ExtResource("1_aosh7")
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_llgjo")
+max_polyphony = 2

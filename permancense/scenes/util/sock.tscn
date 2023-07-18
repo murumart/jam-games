@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8rnh7jfphy3k"]
+
+[ext_resource type="Script" path="res://scenes/util/sock.gd" id="1_id8xg"]
+[ext_resource type="Texture2D" uid="uid://cp4g0ikch0mev" path="res://scenes/util/sock.png.png" id="2_6fygp"]
+[ext_resource type="AudioStream" uid="uid://cvon063ok2upo" path="res://assets/sounds/collect.ogg" id="3_ri8iu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_63fsl"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xm2qa"]
+streams_count = 1
+stream_0/stream = ExtResource("3_ri8iu")
+stream_0/weight = 1.0
+
+[node name="Sock" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_id8xg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_63fsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6fygp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_xm2qa")
+volume_db = 8.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

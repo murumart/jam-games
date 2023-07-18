@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://8d8inws38p63"]
+
+[ext_resource type="Script" path="res://scenes/rooms/bathroom.gd" id="1_6o3kp"]
+[ext_resource type="AudioStream" uid="uid://cygqt7xqfq10i" path="res://music/bathroom.ogg" id="2_4285k"]
+[ext_resource type="Texture2D" uid="uid://bhptevd34bion" path="res://scenes/rooms/bathroom.png" id="2_y8mep"]
+[ext_resource type="PackedScene" uid="uid://cryukuldlow1w" path="res://scenes/player/player.tscn" id="3_mdt5l"]
+[ext_resource type="PackedScene" uid="uid://qh81m82epahn" path="res://scenes/util/scene_changer.tscn" id="4_dmadn"]
+[ext_resource type="PackedScene" uid="uid://b4wgi1v7ovg3x" path="res://scenes/util/interaction_area.tscn" id="6_m0qyt"]
+[ext_resource type="PackedScene" uid="uid://ijujnhrf5o61" path="res://scenes/stinky.tscn" id="7_nwrlm"]
+[ext_resource type="Texture2D" uid="uid://cp4g0ikch0mev" path="res://scenes/util/sock.png.png" id="8_l872h"]
+[ext_resource type="Texture2D" uid="uid://b21844jhl0pgo" path="res://scenes/player/char.png" id="9_bmdhc"]
+[ext_resource type="Texture2D" uid="uid://dnglrnoxs6375" path="res://scenes/theend.png" id="10_37prp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03ckd"]
+size = Vector2(396, 27)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2tkno"]
+radius = 9.0
+
+[node name="Bathroom" type="Node2D"]
+script = ExtResource("1_6o3kp")
+music = ExtResource("2_4285k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y8mep")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("3_mdt5l")]
+position = Vector2(76, 135)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(66, 112, -93, 175, 297, 173, 204, 113, 197, 112, 171, 121, 157, 123, 143, 121, 138, 111)
+
+[node name="SceneChangerArea" parent="." instance=ExtResource("4_dmadn")]
+position = Vector2(49, 189)
+room_path = "res://scenes/rooms/kitchen.tscn"
+spawn_point = 1
+manual = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea"]
+position = Vector2(53, -3.5)
+shape = SubResource("RectangleShape2D_03ckd")
+
+[node name="PipeInteraction" parent="." instance=ExtResource("6_m0qyt")]
+position = Vector2(104, 134)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeInteraction"]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.295)
+shape = SubResource("CircleShape2D_2tkno")
+
+[node name="Stinky" parent="." instance=ExtResource("7_nwrlm")]
+position = Vector2(92, 42)
+rotation = -2.23525
+
+[node name="Stinky2" parent="." instance=ExtResource("7_nwrlm")]
+position = Vector2(114, 40)
+rotation = -3.31596
+
+[node name="Stinky3" parent="." instance=ExtResource("7_nwrlm")]
+position = Vector2(120, 36)
+rotation = -3.60865
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(103, 22)
+rotation = 1.33364
+texture = ExtResource("8_l872h")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(99, 26)
+rotation = 0.215621
+texture = ExtResource("8_l872h")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(102, 21)
+rotation = -0.926222
+texture = ExtResource("8_l872h")
+flip_h = true
+
+[node name="Chair" type="Sprite2D" parent="."]
+position = Vector2(105, 105)
+scale = Vector2(1.70371, 2.60459)
+texture = ExtResource("9_bmdhc")
+
+[node name="Theend" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("10_37prp")
+centered = false
+
+[connection signal="interacted" from="PipeInteraction" to="." method="_on_pipe_interaction_interacted"]

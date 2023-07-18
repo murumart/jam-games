@@ -1,0 +1,123 @@
+[gd_scene load_steps=16 format=3 uid="uid://dt02uhls3xp5p"]
+
+[ext_resource type="Script" path="res://scenes/rooms/room.gd" id="1_8amlt"]
+[ext_resource type="Texture2D" uid="uid://b3vatjsid0icg" path="res://scenes/rooms/corridor.png" id="2_1e0l2"]
+[ext_resource type="AudioStream" uid="uid://c08as6i73q86q" path="res://music/god.ogg" id="2_t8rsg"]
+[ext_resource type="PackedScene" uid="uid://cryukuldlow1w" path="res://scenes/player/player.tscn" id="3_da853"]
+[ext_resource type="PackedScene" uid="uid://qh81m82epahn" path="res://scenes/util/scene_changer.tscn" id="5_xlypn"]
+[ext_resource type="PackedScene" uid="uid://ijujnhrf5o61" path="res://scenes/stinky.tscn" id="6_0mng6"]
+[ext_resource type="PackedScene" uid="uid://brupbqr47cetp" path="res://scenes/util/bullet_launcher.tscn" id="7_k4lx7"]
+[ext_resource type="PackedScene" uid="uid://b8rnh7jfphy3k" path="res://scenes/util/sock.tscn" id="8_wsc57"]
+[ext_resource type="Texture2D" uid="uid://b21844jhl0pgo" path="res://scenes/player/char.png" id="9_pmml6"]
+[ext_resource type="Script" path="res://scenes/rooms/chair.gd" id="9_vvpwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xd7hw"]
+size = Vector2(13, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ctap"]
+size = Vector2(20, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfcoj"]
+size = Vector2(18, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7p43l"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gn1n"]
+
+[node name="Corridor" type="Node2D"]
+script = ExtResource("1_8amlt")
+music = ExtResource("2_t8rsg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(118, 74)
+texture = ExtResource("2_1e0l2")
+
+[node name="Coll" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Coll"]
+build_mode = 1
+polygon = PackedVector2Array(58, 74, 110, 76, 109.56, 62.7954, 82.3469, 49.5939, 32, 70, 45, 102, 40, 104, 29, 81, 22, 86, 36, 112, 32, 113, 29.3753, 108.8, 18.9479, 113.385, 26, 128, 46, 120, 49, 123, 28, 132, 24, 135, 13, 116, 10, 113, 27, 105, 18, 88, 17, 83, 27.4667, 76.4222, 26, 73, 24, 69, 81, 44, 109.406, 58.1891, 109, 46, 125, 45, 125, 34, 130, 34, 131, 45, 144, 44, 148, 55, 188, 55, 188, 60, 146, 60, 146, 115, 116, 115, 117, 91, 57, 90)
+
+[node name="Player" parent="." instance=ExtResource("3_da853")]
+position = Vector2(129, 71)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="SpawnPoints"]
+position = Vector2(66, 82)
+
+[node name="1" type="Node2D" parent="SpawnPoints"]
+position = Vector2(128, 38)
+
+[node name="2" type="Node2D" parent="SpawnPoints"]
+position = Vector2(173, 58)
+
+[node name="3" type="Node2D" parent="SpawnPoints"]
+position = Vector2(132, 109)
+
+[node name="SceneChangerArea" parent="." instance=ExtResource("5_xlypn")]
+position = Vector2(59, 82)
+room_path = "res://scenes/rooms/gaming_room.tscn"
+spawn_point = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea"]
+position = Vector2(-3.5, 0)
+shape = SubResource("RectangleShape2D_xd7hw")
+
+[node name="Stinky" parent="." instance=ExtResource("6_0mng6")]
+position = Vector2(121, 29)
+
+[node name="SceneChangerArea2" parent="." instance=ExtResource("5_xlypn")]
+position = Vector2(130, 117)
+room_path = "res://scenes/rooms/character_customisation.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea2"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_4ctap")
+
+[node name="SceneChangerArea3" parent="." instance=ExtResource("5_xlypn")]
+position = Vector2(185, 58)
+room_path = "res://scenes/rooms/exit.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea3"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_mfcoj")
+
+[node name="SceneChangerArea4" parent="." instance=ExtResource("5_xlypn")]
+position = Vector2(128, 24)
+room_path = "res://scenes/rooms/kitchen.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea4"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_7p43l")
+
+[node name="BulletLauncher" parent="." instance=ExtResource("7_k4lx7")]
+position = Vector2(116, 56)
+rotation = -0.910301
+fire_mode = "circle"
+cooldown = 0.7
+burst = 3
+bullet_speed = 33.0
+add_rotation = 10.0
+
+[node name="Sock" parent="." instance=ExtResource("8_wsc57")]
+position = Vector2(140, 96)
+id = 2
+
+[node name="Chair" type="Area2D" parent="."]
+position = Vector2(55, 121)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_vvpwo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chair"]
+shape = SubResource("CircleShape2D_3gn1n")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chair"]
+position = Vector2(-1, -1)
+scale = Vector2(0.704108, 0.481966)
+texture = ExtResource("9_pmml6")
+
+[connection signal="body_entered" from="Chair" to="Chair" method="_on_body_entered"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bftggvsql4ijn"]
+
+[ext_resource type="Script" path="res://scenes/rooms/character_customisation.gd" id="1_ogijj"]
+[ext_resource type="AudioStream" uid="uid://c0brxktcftlbe" path="res://music/robot.ogg" id="2_5a3hk"]
+[ext_resource type="PackedScene" uid="uid://cryukuldlow1w" path="res://scenes/player/player.tscn" id="3_bca6f"]
+[ext_resource type="PackedScene" uid="uid://b8rnh7jfphy3k" path="res://scenes/util/sock.tscn" id="4_rpjdu"]
+
+[node name="CharacterCustomisation" type="Node2D"]
+script = ExtResource("1_ogijj")
+music = ExtResource("2_5a3hk")
+
+[node name="Player" parent="." instance=ExtResource("3_bca6f")]
+position = Vector2(111, 92)
+
+[node name="CheckBox" type="CheckBox" parent="."]
+offset_left = 21.0
+offset_top = 68.0
+offset_right = 85.0
+offset_bottom = 99.0
+button_pressed = true
+text = "alive"
+
+[node name="CheckBox2" type="CheckBox" parent="."]
+offset_left = 21.0
+offset_top = 38.0
+offset_right = 85.0
+offset_bottom = 69.0
+button_pressed = true
+text = "h"
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "customise yojure character!!!!!!!!!"
+
+[node name="done" type="Button" parent="."]
+offset_left = 5.0
+offset_top = 126.0
+offset_right = 53.0
+offset_bottom = 157.0
+text = "done"
+
+[node name="Sock" parent="." instance=ExtResource("4_rpjdu")]
+position = Vector2(233, 157)
+id = 1
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="done" to="." method="_on_done_pressed"]

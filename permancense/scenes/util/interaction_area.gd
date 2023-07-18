@@ -1,6 +1,6 @@
-class_name DialogueArea extends Area2D
+extends Area2D
 
-@export_multiline var dialogue : String = ""
+signal interacted
 
 var player_in := false
 var locked := false
@@ -20,4 +20,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not locked and player_in:
 		
 		if event.is_action_pressed("ui_accept"):
-			GUI.dialogue(dialogue)
+			interacted.emit()

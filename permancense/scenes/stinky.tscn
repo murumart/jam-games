@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ijujnhrf5o61"]
+[gd_scene load_steps=10 format=3 uid="uid://ijujnhrf5o61"]
 
 [ext_resource type="Texture2D" uid="uid://bvmonitxu5dde" path="res://scenes/rooms/stinky.png" id="1_sbcwq"]
+[ext_resource type="Script" path="res://scenes/stinky.gd" id="2_g4rsw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xisa6"]
 atlas = ExtResource("1_sbcwq")
@@ -56,3 +57,4 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_a5bkx")
 autoplay = "default"
 frame_progress = 0.374184
+script = ExtResource("2_g4rsw")

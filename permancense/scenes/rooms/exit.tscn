@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3xfe2vdmbcit"]
+
+[ext_resource type="Script" path="res://scenes/rooms/room.gd" id="1_ec4ds"]
+[ext_resource type="Texture2D" uid="uid://cywahb2jllkqi" path="res://scenes/rooms/exit.png" id="2_ffemv"]
+[ext_resource type="PackedScene" uid="uid://cryukuldlow1w" path="res://scenes/player/player.tscn" id="3_w83cq"]
+[ext_resource type="PackedScene" uid="uid://qh81m82epahn" path="res://scenes/util/scene_changer.tscn" id="4_8alwl"]
+[ext_resource type="PackedScene" uid="uid://brupbqr47cetp" path="res://scenes/util/bullet_launcher.tscn" id="5_38725"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lgqt4"]
+radius = 11.0454
+
+[node name="Exit" type="Node2D"]
+script = ExtResource("1_ec4ds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ffemv")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(32, 136, 10, 147, 223, 148, 210, 138)
+
+[node name="Player" parent="." instance=ExtResource("3_w83cq")]
+position = Vector2(34, 145)
+
+[node name="SceneChangerArea" parent="." instance=ExtResource("4_8alwl")]
+position = Vector2(20, 132)
+room_path = "res://scenes/rooms/corridor.tscn"
+spawn_point = 2
+manual = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea"]
+shape = SubResource("CircleShape2D_lgqt4")
+
+[node name="SceneChangerArea2" parent="." instance=ExtResource("4_8alwl")]
+position = Vector2(175, 133)
+room_path = "res://scenes/rooms/end_good.tscn"
+manual = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea2"]
+shape = SubResource("CircleShape2D_lgqt4")
+
+[node name="BulletLauncher" parent="." instance=ExtResource("5_38725")]
+position = Vector2(65, 70)
+bullet_speed = 100.0
+
+[node name="BulletLauncher2" parent="." instance=ExtResource("5_38725")]
+position = Vector2(74, 70)
+cooldown = 0.8
+bullet_speed = 100.0
+
+[node name="BulletLauncher3" parent="." instance=ExtResource("5_38725")]
+position = Vector2(83, 70)
+cooldown = 0.6
+bullet_speed = 100.0
+
+[node name="BulletLauncher4" parent="." instance=ExtResource("5_38725")]
+position = Vector2(92, 70)
+cooldown = 0.4
+bullet_speed = 100.0
+
+[node name="BulletLauncher5" parent="." instance=ExtResource("5_38725")]
+position = Vector2(104, 64)
+cooldown = 4.0
+burst = 16
+
+[node name="BulletLauncher6" parent="." instance=ExtResource("5_38725")]
+position = Vector2(228, 60)
+rotation = 0.350687
+
+[node name="BulletLauncher7" parent="." instance=ExtResource("5_38725")]
+position = Vector2(228, 60)
+rotation = 0.61574
+
+[node name="BulletLauncher8" parent="." instance=ExtResource("5_38725")]
+position = Vector2(228, 60)
+rotation = 0.931627
+
+[node name="BulletLauncher9" parent="." instance=ExtResource("5_38725")]
+position = Vector2(118, 9)
+fire_mode = "circle"
+burst = 16
+bullet_speed = 70.0
+
+[node name="BulletLauncher10" parent="." instance=ExtResource("5_38725")]
+position = Vector2(18, 90)
+rotation = -1.23441
+cooldown = 0.95

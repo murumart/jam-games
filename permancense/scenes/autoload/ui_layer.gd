@@ -23,6 +23,20 @@ func dialogue(string: String) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if open:
 		if event.is_action_pressed("ui_accept"):
-			dial_closed.emit()
-			dialbox.hide()
-			open = false
+			close_dial()
+
+
+func close_dial() -> void:
+	dial_closed.emit()
+	dialbox.hide()
+	open = false
+
+
+func notif_space(to: bool) -> void:
+	$PressSpaceNotif.visible = to
+
+
+func notif_r(to: bool) -> void:
+	$PressRNotif.visible = to
+
+
