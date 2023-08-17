@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://f0fusgxx4wln"]
+
+[ext_resource type="Script" path="res://scenes/main/comic_window.gd" id="1_vvmd4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nhafw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hbt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d4ll"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_164sm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61arl"]
+
+[sub_resource type="Theme" id="Theme_5aucb"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.654902, 0.654902, 0.654902, 1)
+Button/colors/font_focus_color = Color(0.807843, 1, 0.945098, 1)
+Button/colors/font_hover_color = Color(0.870588, 1, 0.764706, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.576471, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0.576471, 1, 1)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 32
+Button/styles/disabled = SubResource("StyleBoxEmpty_nhafw")
+Button/styles/focus = SubResource("StyleBoxEmpty_6hbt7")
+Button/styles/hover = SubResource("StyleBoxEmpty_0d4ll")
+Button/styles/normal = SubResource("StyleBoxEmpty_164sm")
+Button/styles/pressed = SubResource("StyleBoxEmpty_61arl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6peb"]
+
+[node name="Window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5aucb")
+script = ExtResource("1_vvmd4")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222222
+anchor_right = 0.777778
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o6peb")
+metadata/_edit_use_anchors_ = true
+
+[node name="Center" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PageTitle" type="RichTextLabel" parent="ScrollContainer/Center"]
+custom_minimum_size = Vector2(0, 67)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[center]yo yo yo this is the title
+what if its on 2 lines huh"
+metadata/_edit_use_anchors_ = true
+
+[node name="Content" type="Control" parent="ScrollContainer/Center"]
+clip_contents = true
+custom_minimum_size = Vector2(620, 320)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="PageText" type="RichTextLabel" parent="ScrollContainer/Center"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "you are going to be beat to death!!"
+
+[node name="NextPageContainer" type="HBoxContainer" parent="ScrollContainer/Center"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="ScrollContainer/Center/NextPageContainer"]
+layout_mode = 2
+text = "--->"
+
+[node name="Button2" type="Button" parent="ScrollContainer/Center/NextPageContainer"]
+layout_mode = 2
+text = "--->"

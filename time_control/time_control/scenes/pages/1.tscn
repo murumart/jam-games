@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmglrtb31e7xw"]
+
+[ext_resource type="Script" path="res://scenes/pages/page.gd" id="1_qrmb3"]
+[ext_resource type="Texture2D" uid="uid://dwiie0ajgxhcu" path="res://scenes/pages/1.png" id="2_0cy8k"]
+
+[node name="FirstPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qrmb3")
+text = "You appear to be a guy in his room.
+
+Today is the first \"worksday\" of the \"week\". This week is the most crucial week in your life for sure."
+next_choices = Array[StringName]([&"Inspect wall"])
+next_pages = Array[int]([2])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0cy8k")
+stretch_mode = 5

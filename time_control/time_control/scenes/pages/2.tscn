@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy07kw7t6wly5"]
+
+[ext_resource type="Script" path="res://scenes/pages/page.gd" id="1_oykpd"]
+[ext_resource type="Texture2D" uid="uid://cemkov2xws5pa" path="res://scenes/pages/2.png" id="2_m7sc6"]
+
+[node name="Page" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oykpd")
+text = "Well, there is nothing here, anywhere.
+Your enterior sucks. Damn, you live like this?"
+next_choices = Array[StringName]([&"State matters at hand"])
+next_pages = Array[int]([3])
+previous_page = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m7sc6")
+stretch_mode = 5
