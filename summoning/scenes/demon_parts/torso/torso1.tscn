@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://o0wg1j6gbnpg"]
+
+[ext_resource type="Texture2D" uid="uid://city30b6afln3" path="res://scenes/demon_parts/bodies1.png" id="1_1ldx2"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_qccx4"]
+
+[node name="Torso1" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+self_modulate = Color(0.686275, 0.698039, 1, 1)
+position = Vector2(2.99998, -12.5)
+scale = Vector2(0.203125, 0.367188)
+texture = ExtResource("1_1ldx2")
+region_enabled = true
+region_rect = Rect2(359, 17, 81, 106)
+
+[node name="BodypartMarker" type="Node2D" parent="."]
+position = Vector2(4, -32)
+script = ExtResource("2_qccx4")
+type = &"head"
+
+[node name="BodypartMarker2" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(10, -23)
+rotation = -0.426892
+script = ExtResource("2_qccx4")
+type = &"upper_arm"
+
+[node name="BodypartMarker3" type="Node2D" parent="."]
+position = Vector2(-4, -22)
+rotation = 0.281549
+script = ExtResource("2_qccx4")
+type = &"upper_arm"
+
+[node name="BodypartMarker4" type="Node2D" parent="."]
+position = Vector2(-2, 3)
+rotation = 0.281549
+script = ExtResource("2_qccx4")
+type = &"upper_leg"
+
+[node name="BodypartMarker5" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(7, 3)
+rotation = -0.295543
+script = ExtResource("2_qccx4")
+type = &"upper_leg"

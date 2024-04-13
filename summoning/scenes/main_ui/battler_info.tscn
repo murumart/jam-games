@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp34vk7y7vdna"]
+
+[ext_resource type="Theme" uid="uid://bmemojp8a4hny" path="res://scenes/main_ui/main_theme.tres" id="1_44igh"]
+[ext_resource type="Texture2D" uid="uid://8nvql0k815gd" path="res://icon.svg" id="2_but2b"]
+[ext_resource type="Script" path="res://scenes/main_ui/battler_info.gd" id="2_tn0cy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bywu4"]
+bg_color = Color(0.168627, 0, 0.0313726, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7v1vu"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.721569, 0.270588, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[node name="BattlerInfo" type="MarginContainer"]
+anchors_preset = -1
+anchor_right = 0.417
+anchor_bottom = 0.25
+offset_right = -0.192017
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_44igh")
+script = ExtResource("2_tn0cy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_but2b")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameAndHP" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/VBoxContainer/NameAndHP"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "name"
+
+[node name="HealthBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/NameAndHP"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_bywu4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7v1vu")
+value = 56.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "demon stats:"
+
+[node name="DemonStats" type="HFlowContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

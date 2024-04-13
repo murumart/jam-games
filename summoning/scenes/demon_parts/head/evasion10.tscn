@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://v7xuwyixf4ft"]
+
+[ext_resource type="Texture2D" uid="uid://h2icuqdv6kk0" path="res://scenes/demon_parts/heads1.png" id="1_jpor2"]
+[ext_resource type="Script" path="res://types/sin_animator.gd" id="2_qvjta"]
+
+[node name="Head1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(10, -14)
+rotation = 0.39571
+texture = ExtResource("1_jpor2")
+region_enabled = true
+region_rect = Rect2(122, 61, 46, 42)
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_qvjta")
+property_name = &"rotation"
+target = NodePath("../Sprite2D")
+speed = 2.0
+min_value = 0.48
+max_value = -0.235
+offset = 3.585
+random_offset = true

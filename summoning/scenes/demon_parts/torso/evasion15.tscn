@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://st8fcxjs2crq"]
+
+[ext_resource type="Texture2D" uid="uid://city30b6afln3" path="res://scenes/demon_parts/bodies1.png" id="1_yliah"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_1r2gl"]
+
+[node name="Thealth10" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -42)
+texture = ExtResource("1_yliah")
+region_enabled = true
+region_rect = Rect2(236, 162, 89, 107)
+
+[node name="BodypartMarker" type="Node2D" parent="."]
+position = Vector2(-42, -55)
+rotation = 0.799005
+script = ExtResource("2_1r2gl")
+type = &"upper_arm"
+
+[node name="BodypartMarker2" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(36, -62)
+rotation = -0.479503
+script = ExtResource("2_1r2gl")
+type = &"upper_arm"
+
+[node name="BodypartMarker3" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(21, 5)
+rotation = -0.158073
+script = ExtResource("2_1r2gl")
+type = &"upper_leg"
+
+[node name="BodypartMarker4" type="Node2D" parent="."]
+position = Vector2(-12, 2)
+rotation = 0.000502944
+script = ExtResource("2_1r2gl")
+type = &"upper_leg"
+
+[node name="BodypartMarker5" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(-1, -85)
+script = ExtResource("2_1r2gl")
+type = &"head"

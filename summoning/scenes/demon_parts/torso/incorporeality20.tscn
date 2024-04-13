@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://qqmvxecj14ca"]
+
+[ext_resource type="Texture2D" uid="uid://city30b6afln3" path="res://scenes/demon_parts/bodies1.png" id="1_axy53"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_x7pmu"]
+
+[node name="Thealth10" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -42)
+texture = ExtResource("1_axy53")
+region_enabled = true
+region_rect = Rect2(344, 140, 86, 112)
+
+[node name="BodypartMarker3" type="Node2D" parent="."]
+position = Vector2(-30, -9.53674e-07)
+rotation = 0.692974
+script = ExtResource("2_x7pmu")
+type = &"upper_leg"
+
+[node name="BodypartMarker6" type="Node2D" parent="."]
+position = Vector2(-19, 9)
+rotation = 0.537277
+script = ExtResource("2_x7pmu")
+type = &"upper_leg"
+
+[node name="BodypartMarker4" type="Node2D" parent="."]
+position = Vector2(-38, -7)
+rotation = 0.843881
+script = ExtResource("2_x7pmu")
+type = &"upper_leg"

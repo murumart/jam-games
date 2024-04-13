@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://csl4dfbdi5d7t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6p0s"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clptj"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="DemonStatDisplay" type="PanelContainer"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.4)
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_q6p0s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_clptj")
+value = 45.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "statname: lvl 35"

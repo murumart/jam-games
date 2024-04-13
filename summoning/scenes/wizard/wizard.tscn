@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5cxb4fg2w505"]
+
+[ext_resource type="Script" path="res://scenes/wizard/wizard.gd" id="1_le4xr"]
+[ext_resource type="Texture2D" uid="uid://fi6tbdh83c27" path="res://scenes/wizard/wizard_body.png" id="2_k3b28"]
+[ext_resource type="Texture2D" uid="uid://p5baycgsw586" path="res://scenes/wizard/wizard_head.png" id="2_kppel"]
+[ext_resource type="Script" path="res://types/sin_animator.gd" id="4_55igp"]
+
+[node name="Wizard" type="Node2D"]
+script = ExtResource("1_le4xr")
+
+[node name="Pibot" type="Node2D" parent="."]
+
+[node name="Body" type="Node2D" parent="Pibot"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pibot/Body"]
+position = Vector2(-22.2881, -42)
+texture = ExtResource("2_k3b28")
+centered = false
+
+[node name="Head" type="Node2D" parent="Pibot"]
+position = Vector2(2, -31)
+scale = Vector2(1, 0.825359)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pibot/Head"]
+position = Vector2(-24, -42)
+texture = ExtResource("2_kppel")
+centered = false
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_55igp")
+property_name = &"scale:y"
+target = NodePath("../Pibot/Head")
+speed = 4.0
+min_value = 0.805
+max_value = -0.12
+
+[node name="SinAnimator2" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_55igp")
+property_name = &"position:x"
+target = NodePath("../Pibot/Body/Sprite2D")
+speed = 3.03
+min_value = -22.84
+max_value = 2.05

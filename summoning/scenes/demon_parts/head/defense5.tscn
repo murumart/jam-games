@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://xbsc15fmui7v"]
+
+[ext_resource type="Texture2D" uid="uid://h2icuqdv6kk0" path="res://scenes/demon_parts/heads1.png" id="1_yxmj3"]
+
+[node name="Head1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -22)
+texture = ExtResource("1_yxmj3")
+region_enabled = true
+region_rect = Rect2(58, 4, 43, 48)

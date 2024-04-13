@@ -1,0 +1,196 @@
+[gd_scene load_steps=11 format=3 uid="uid://5ys1c4rc423e"]
+
+[ext_resource type="Theme" uid="uid://bmemojp8a4hny" path="res://scenes/main_ui/main_theme.tres" id="1_kqh3u"]
+[ext_resource type="Script" path="res://scenes/main_ui/main_ui.gd" id="2_4w2jc"]
+[ext_resource type="Texture2D" uid="uid://usfwojfs4ego" path="res://scenes/main_ui/dungeon_map_tiles.png" id="2_hanf1"]
+[ext_resource type="StyleBox" uid="uid://6uh2mxfgyel7" path="res://scenes/main_ui/main_stile.tres" id="3_diio8"]
+[ext_resource type="Texture2D" uid="uid://clq60c2jiwa4j" path="res://scenes/main_ui/dmt.png" id="4_kay37"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8b3j"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.407843, 0.407843, 0.407843, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mmie"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0xwf"]
+texture = ExtResource("2_hanf1")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/top_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/right_side = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/left_side = 0
+3:1/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/top_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/right_side = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/left_side = 0
+3:2/0/terrains_peering_bit/top_side = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/right_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/right_side = 0
+2:3/0/terrains_peering_bit/left_side = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iov4k"]
+texture = ExtResource("4_kay37")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_22gfq"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "dungeonmap"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/1 = SubResource("TileSetAtlasSource_iov4k")
+sources/0 = SubResource("TileSetAtlasSource_g0xwf")
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kqh3u")
+script = ExtResource("2_4w2jc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="LeftWizardPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DungeonMap" type="Panel" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+theme_override_styles/panel = ExtResource("3_diio8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/DungeonMap"]
+layout_mode = 0
+offset_right = 73.0
+offset_bottom = 74.0
+theme_override_constants/separation = -3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/DungeonMap/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_k8b3j")
+text = "the dungeon"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/DungeonMap/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PanelContainer/MarginContainer/HBoxContainer/DungeonMap/VBoxContainer/MarginContainer"]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1mmie")
+
+[node name="DungeonTiles" type="TileMap" parent="PanelContainer/MarginContainer/HBoxContainer/DungeonMap/VBoxContainer/MarginContainer/Panel"]
+unique_name_in_owner = true
+position = Vector2(27, 27)
+tile_set = SubResource("TileSet_22gfq")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 3, 1, 196608, 2, -65535, 0, 0)
+layer_1/tile_data = PackedInt32Array(-65535, 262146, 0)
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/HBoxContainer/DungeonMap/VBoxContainer/MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 38.0
+offset_bottom = 38.0
+color = Color(1, 0, 1, 1)
+
+[node name="RightWizardPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
