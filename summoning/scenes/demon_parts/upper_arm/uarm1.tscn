@@ -7,7 +7,7 @@
 [node name="Uarm1" type="Node2D"]
 
 [node name="Node2D" type="Node2D" parent="."]
-rotation = -0.146422
+rotation = 0.20537
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 position = Vector2(3, 20)

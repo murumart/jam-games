@@ -3,12 +3,15 @@ class_name DemonGenerator extends Node2D
 static var _parts := {}
 
 
-func generate(demon_stats: DemonStats) -> void:
+func generate(demon_stats: DemonStats) -> Battler:
 	DemonGenerator.load_bodypart_files()
+	var battler := Battler.new()
+	battler.demon_stats = demon_stats
 	var torso := BodypartMarker.new()
 	torso.type = &"torso"
-	add_child(torso)
-	torso.start_generating(DemonGenerator._parts, demon_stats)
+	battler.add_child(torso)
+	battler.ready.connect(func(): torso.start_generating(_parts, demon_stats))
+	return battler
 
 
 static func load_bodypart_files() -> void:

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cot1x4a8yp2xf"]
+
+[ext_resource type="Texture2D" uid="uid://kmprgngqdo1y" path="res://scenes/demon_parts/nubs1.png" id="1_dhb5s"]
+[ext_resource type="Script" path="res://types/sin_animator.gd" id="2_wocdv"]
+
+[node name="Head1" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+rotation = 0.25757
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(1, 2)
+rotation = -0.109444
+texture = ExtResource("1_dhb5s")
+offset = Vector2(28, 14)
+region_enabled = true
+region_rect = Rect2(130, 3, 61, 46)
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_wocdv")
+property_name = &"rotation"
+target = NodePath("../Node2D/Sprite2D")
+speed = 20.0
+min_value = -0.105
+max_value = 0.03
+
+[node name="SinAnimator2" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_wocdv")
+property_name = &"rotation"
+target = NodePath("../Node2D")
+speed = 2.0
+min_value = 0.39
+max_value = 0.945

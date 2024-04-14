@@ -1,10 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkfk75cgll81s"]
 
-[ext_resource type="Texture2D" uid="uid://8nvql0k815gd" path="res://icon.svg" id="1_m0sk1"]
+[ext_resource type="Texture2D" uid="uid://be1tupjqqdakn" path="res://scenes/demon_parts/legs1.png" id="1_usj2u"]
 
 [node name="Lleg1" type="Node2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(4, 16)
-scale = Vector2(0.453125, 0.210938)
-texture = ExtResource("1_m0sk1")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, 19)
+texture = ExtResource("1_usj2u")
+region_enabled = true
+region_rect = Rect2(7, 66, 31, 38)

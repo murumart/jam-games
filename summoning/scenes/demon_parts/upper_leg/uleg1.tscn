@@ -1,22 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqxpqqxbg7o5r"]
 
-[ext_resource type="Texture2D" uid="uid://8nvql0k815gd" path="res://icon.svg" id="1_0k3hy"]
+[ext_resource type="Texture2D" uid="uid://be1tupjqqdakn" path="res://scenes/demon_parts/legs1.png" id="1_j34ob"]
 [ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_b16e4"]
 [ext_resource type="Script" path="res://types/sin_animator.gd" id="3_662bq"]
 
 [node name="Uleg1" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
-rotation = -0.244197
-scale = Vector2(0.0703125, 0.460938)
-texture = ExtResource("1_0k3hy")
-offset = Vector2(-14.2222, 67.2542)
+position = Vector2(-2, 2)
+rotation = -0.107991
+texture = ExtResource("1_j34ob")
+offset = Vector2(0.194868, 14.3727)
+region_enabled = true
+region_rect = Rect2(0, 0, 26, 44)
 
 [node name="BodypartMarker" type="Node2D" parent="Icon"]
-position = Vector2(-14.2222, 128)
+show_behind_parent = true
+position = Vector2(1.42276, 34.0291)
 rotation = 0.0523304
-scale = Vector2(13.4698, 5.05404)
-skew = 1.1004
 script = ExtResource("2_b16e4")
 type = &"lower_leg"
 
@@ -27,5 +28,5 @@ target = NodePath("../Icon")
 speed = 2.0
 min_value = -0.155
 max_value = 0.295
-offset = 3.72716
+offset = 2.55796
 random_offset = true

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfdll4iuldx3c"]
+
+[ext_resource type="Theme" uid="uid://bmemojp8a4hny" path="res://scenes/main_ui/main_theme.tres" id="1_eiu80"]
+[ext_resource type="Texture2D" uid="uid://c7nmknxc7devs" path="res://scenes/main_ui/items.png" id="1_h4yag"]
+[ext_resource type="Script" path="res://scenes/main_ui/draggable_item.gd" id="2_ebfxc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i4t2"]
+resource_local_to_scene = true
+atlas = ExtResource("1_h4yag")
+region = Rect2(0, 0, 16, 16)
+
+[node name="DraggableItem" type="TextureRect" groups=["draggable_items"]]
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_eiu80")
+texture = SubResource("AtlasTexture_3i4t2")
+stretch_mode = 1
+script = ExtResource("2_ebfxc")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

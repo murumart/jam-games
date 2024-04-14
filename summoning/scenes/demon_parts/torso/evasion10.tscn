@@ -11,19 +11,6 @@ texture = ExtResource("1_7qjd3")
 region_enabled = true
 region_rect = Rect2(127, 159, 86, 113)
 
-[node name="BodypartMarker" type="Node2D" parent="."]
-position = Vector2(-35, -60)
-rotation = 0.799005
-script = ExtResource("2_vyrjc")
-type = &"upper_arm"
-
-[node name="BodypartMarker2" type="Node2D" parent="."]
-z_index = -1
-position = Vector2(32, -63)
-rotation = -0.479503
-script = ExtResource("2_vyrjc")
-type = &"upper_arm"
-
 [node name="BodypartMarker3" type="Node2D" parent="."]
 z_index = -1
 position = Vector2(15, 6)
@@ -42,3 +29,16 @@ z_index = -1
 position = Vector2(10, -91)
 script = ExtResource("2_vyrjc")
 type = &"head"
+
+[node name="BodypartMarker" type="Node2D" parent="."]
+position = Vector2(-35, -60)
+rotation = 0.799005
+script = ExtResource("2_vyrjc")
+type = &"upper_arm"
+
+[node name="BodypartMarker2" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(32, -63)
+rotation = -0.479503
+script = ExtResource("2_vyrjc")
+type = &"upper_arm"

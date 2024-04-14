@@ -1,10 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmc7iwcdopgi4"]
+[gd_scene load_steps=4 format=3 uid="uid://cmc7iwcdopgi4"]
 
-[ext_resource type="Texture2D" uid="uid://8nvql0k815gd" path="res://icon.svg" id="1_uqnmh"]
+[ext_resource type="Texture2D" uid="uid://dedbces6l48nw" path="res://scenes/demon_parts/arms1.png" id="1_o3tfm"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_0scqk"]
+[ext_resource type="Script" path="res://types/sin_animator.gd" id="2_fuyc0"]
 
 [node name="Larm1" type="Node2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(3, 16)
-scale = Vector2(0.0859375, 0.25)
-texture = ExtResource("1_uqnmh")
+[node name="Node2D" type="Node2D" parent="."]
+rotation = -0.281904
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(1, 23)
+texture = ExtResource("1_o3tfm")
+region_enabled = true
+region_rect = Rect2(7, 75, 24, 56)
+
+[node name="BodypartMarker" type="Node2D" parent="Node2D"]
+position = Vector2(5.7011, 47.9948)
+script = ExtResource("2_0scqk")
+type = &"hand"
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_fuyc0")
+property_name = &"rotation"
+target = NodePath("../Node2D")
+min_value = -0.76

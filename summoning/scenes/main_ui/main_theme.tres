@@ -1,29 +1,22 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bmemojp8a4hny"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bmemojp8a4hny"]
 
+[ext_resource type="StyleBox" uid="uid://l50fxar5jftu" path="res://scenes/main_ui/main_style_hover.tres" id="1_641yj"]
+[ext_resource type="StyleBox" uid="uid://kxei0nifbshf" path="res://scenes/main_ui/main_style_disabled.tres" id="1_mfp7p"]
 [ext_resource type="StyleBox" uid="uid://cmn4b14177fv3" path="res://scenes/main_ui/main_style_bo.tres" id="1_u47cp"]
 [ext_resource type="FontFile" uid="uid://5638fr1svykf" path="res://font/gregfont.ttf" id="1_ysrbp"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kve3f"]
-bg_color = Color(0.415686, 0.321569, 0.239216, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.584314, 0.486275, 0.329412, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-shadow_color = Color(0, 0, 0, 0.286275)
-shadow_size = 1
-shadow_offset = Vector2(1, 1)
-anti_aliasing = false
+[ext_resource type="StyleBox" uid="uid://13cjrinxncgt" path="res://scenes/main_ui/main_style_pressed.tres" id="4_ecj3g"]
+[ext_resource type="StyleBox" uid="uid://6uh2mxfgyel7" path="res://scenes/main_ui/main_stile.tres" id="5_thjqv"]
 
 [resource]
 default_font = ExtResource("1_ysrbp")
+Button/styles/disabled = ExtResource("1_mfp7p")
+Button/styles/hover = ExtResource("1_641yj")
+Button/styles/normal = ExtResource("1_u47cp")
+Button/styles/pressed = ExtResource("4_ecj3g")
 MarginContainer/constants/margin_bottom = 2
 MarginContainer/constants/margin_left = 2
 MarginContainer/constants/margin_right = 2
 MarginContainer/constants/margin_top = 2
 Panel/styles/panel = ExtResource("1_u47cp")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_kve3f")
+PanelContainer/styles/panel = ExtResource("1_u47cp")
+TooltipPanel/styles/panel = ExtResource("5_thjqv")

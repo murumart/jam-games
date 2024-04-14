@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://ocyfiehisnac"]
+
+[ext_resource type="Texture2D" uid="uid://dedbces6l48nw" path="res://scenes/demon_parts/arms1.png" id="1_0l8xb"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_5r11w"]
+[ext_resource type="Script" path="res://types/sin_animator.gd" id="3_ddh6m"]
+
+[node name="Uarm1" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-2, 7)
+rotation = 0.117115
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(6.97705, 23.0504)
+rotation = -0.337451
+texture = ExtResource("1_0l8xb")
+region_enabled = true
+region_rect = Rect2(132, 4, 43, 73)
+
+[node name="BodypartMarker" type="Node2D" parent="Node2D"]
+show_behind_parent = true
+position = Vector2(15.133, 43.3127)
+rotation = -0.425836
+script = ExtResource("2_5r11w")
+type = &"lower_arm"
+
+[node name="BodypartMarker2" type="Node2D" parent="Node2D"]
+z_as_relative = false
+position = Vector2(7.97307, 2.10482)
+rotation = -1.3684
+script = ExtResource("2_5r11w")
+type = &"nub"
+
+[node name="BodypartMarker3" type="Node2D" parent="Node2D"]
+z_as_relative = false
+position = Vector2(8.83066, 16.5837)
+rotation = -1.3684
+script = ExtResource("2_5r11w")
+type = &"nub"
+
+[node name="BodypartMarker4" type="Node2D" parent="Node2D"]
+z_as_relative = false
+position = Vector2(9.54733, 30.3125)
+rotation = -1.3684
+script = ExtResource("2_5r11w")
+type = &"nub"
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_ddh6m")
+property_name = &"rotation"
+target = NodePath("../Node2D")
+max_value = 0.245
+offset = 2.22702
+random_offset = true

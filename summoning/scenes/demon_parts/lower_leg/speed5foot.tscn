@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu44hkcpvp527"]
+
+[ext_resource type="Texture2D" uid="uid://be1tupjqqdakn" path="res://scenes/demon_parts/legs1.png" id="1_7qfmu"]
+
+[node name="Lleg1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 19)
+texture = ExtResource("1_7qfmu")
+region_enabled = true
+region_rect = Rect2(103, 65, 53, 46)

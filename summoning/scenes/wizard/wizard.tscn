@@ -13,13 +13,13 @@ script = ExtResource("1_le4xr")
 [node name="Body" type="Node2D" parent="Pibot"]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pibot/Body"]
-position = Vector2(-22.2881, -42)
+position = Vector2(-22.1095, -42)
 texture = ExtResource("2_k3b28")
 centered = false
 
 [node name="Head" type="Node2D" parent="Pibot"]
 position = Vector2(2, -31)
-scale = Vector2(1, 0.825359)
+scale = Vector2(1, 0.848829)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pibot/Head"]
 position = Vector2(-24, -42)

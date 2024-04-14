@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce74kn88ock86"]
+
+[ext_resource type="Texture2D" uid="uid://be1tupjqqdakn" path="res://scenes/demon_parts/legs1.png" id="1_tq0qj"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_2oa6y"]
+[ext_resource type="Script" path="res://types/sin_animator.gd" id="3_jhqph"]
+
+[node name="Uleg1" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+rotation = -0.293666
+texture = ExtResource("1_tq0qj")
+offset = Vector2(1.18313, 28.4463)
+region_enabled = true
+region_rect = Rect2(98, 5, 25, 61)
+
+[node name="BodypartMarker" type="Node2D" parent="Icon"]
+show_behind_parent = true
+position = Vector2(0.289184, 53.4501)
+rotation = 0.0523304
+script = ExtResource("2_2oa6y")
+type = &"lower_leg"
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_jhqph")
+property_name = &"rotation"
+target = NodePath("../Icon")
+speed = 2.0
+min_value = -0.155
+max_value = 0.295
+offset = 4.13047
+random_offset = true

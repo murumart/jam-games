@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://5ys1c4rc423e"]
+[gd_scene load_steps=14 format=3 uid="uid://5ys1c4rc423e"]
 
 [ext_resource type="Theme" uid="uid://bmemojp8a4hny" path="res://scenes/main_ui/main_theme.tres" id="1_kqh3u"]
 [ext_resource type="Script" path="res://scenes/main_ui/main_ui.gd" id="2_4w2jc"]
 [ext_resource type="Texture2D" uid="uid://usfwojfs4ego" path="res://scenes/main_ui/dungeon_map_tiles.png" id="2_hanf1"]
 [ext_resource type="StyleBox" uid="uid://6uh2mxfgyel7" path="res://scenes/main_ui/main_stile.tres" id="3_diio8"]
 [ext_resource type="Texture2D" uid="uid://clq60c2jiwa4j" path="res://scenes/main_ui/dmt.png" id="4_kay37"]
+[ext_resource type="Script" path="res://scenes/main_ui/drawing_tablet.gd" id="6_cw3e0"]
+[ext_resource type="Script" path="res://scenes/main_ui/summoning_circle_screen.gd" id="6_gwf4o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8b3j"]
 bg_color = Color(0, 0, 0, 1)
@@ -115,6 +117,14 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_iov4k")
 sources/0 = SubResource("TileSetAtlasSource_g0xwf")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn2eh"]
+bg_color = Color(0.247059, 0.192157, 0.196078, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -124,6 +134,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kqh3u")
 script = ExtResource("2_4w2jc")
+metadata/_edit_lock_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -194,3 +205,108 @@ color = Color(1, 0, 1, 1)
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="SummoningCircleScreen" type="PanelContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+script = ExtResource("6_gwf4o")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/SummoningCircleScreen"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/SummoningCircleScreen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "inventory"
+horizontal_alignment = 1
+
+[node name="InventoryPanel" type="Panel" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "the other stuff idk"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="DrawingTablet" type="Panel" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fn2eh")
+script = ExtResource("6_cw3e0")
+
+[node name="SummonButton" type="Button" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/MarginContainer/DrawingTablet"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 99.0
+offset_top = 99.0
+offset_right = 183.0
+offset_bottom = 123.0
+focus_mode = 0
+text = "summon"
+
+[node name="debug" type="Label" parent="."]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 71.0
+offset_right = 564.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 1

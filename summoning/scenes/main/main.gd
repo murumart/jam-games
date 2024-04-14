@@ -1,12 +1,12 @@
 extends Node2D
 
 const UIType := preload("res://scenes/main_ui/main_ui.gd")
-const BattleManagerType := preload("res://scenes/main/battle_manager.gd")
 
 var rooms_map := {}
+var inventory := {}
 
 @onready var ui := $UI as UIType
-@onready var battle_manager := $BattleManager as BattleManagerType
+@onready var battle_manager := $BattleManager as BattleManager
 
 @onready var demon_1_spot: DemonGenerator = $Demon1Spot
 
@@ -16,7 +16,6 @@ func _ready() -> void:
 	battle_manager.battler_info_returned.connect(func(info: BattlerInfo, is_enemy: bool):
 		ui.add_battle_info(info, is_enemy)
 	)
-
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

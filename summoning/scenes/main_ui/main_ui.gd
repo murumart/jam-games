@@ -1,8 +1,11 @@
 extends Control
 
+const SumCircScreenType := preload("res://scenes/main_ui/summoning_circle_screen.gd")
+
 @onready var dungeon_tiles: TileMap = %DungeonTiles
 @onready var left_wizard_panel: PanelContainer = %LeftWizardPanel
 @onready var right_wizard_panel: PanelContainer = %RightWizardPanel
+@onready var summoning_circle_screen := $CenterContainer/SummoningCircleScreen as SumCircScreenType
 
 
 func set_tiles(tiles: Array[Vector2i]) -> void:
@@ -28,8 +31,9 @@ func _funky_child(parent: Node, child: Node) -> void:
 	parent.add_child(child)
 	if not "position" in child:
 		return
-	var tw := create_tween().set_trans(Tween.TRANS_SPRING)
-	tw.tween_property(child, "scale:x", child.scale.x, 0.15).from(2.0)
-	tw.parallel().tween_property(child, "scale:y", child.scale.y, 0.1).from(0.0)
-	tw.parallel().tween_property(child, "modulate", child.modulate, 0.2).from(Color(0.5, 0.0, 0.5, 0.0))
-	tw.parallel().tween_property(child, "rotation", child.rotation, 0.3).from(randf_range(-0.5, 0.5))
+	GeneralAnimations.intro_animation(child)
+
+
+func open_drawing_tablet() -> void:
+	summoning_circle_screen.start()
+

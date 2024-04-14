@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkpbt1l0riu30"]
+
+[ext_resource type="Texture2D" uid="uid://kmprgngqdo1y" path="res://scenes/demon_parts/nubs1.png" id="1_wj0h8"]
+
+[node name="Head1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(19, 23)
+rotation = 0.887862
+texture = ExtResource("1_wj0h8")
+region_enabled = true
+region_rect = Rect2(148, 47, 56, 36)

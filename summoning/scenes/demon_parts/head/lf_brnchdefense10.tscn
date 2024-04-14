@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://tscv4mdw1tqa"]
 
-[ext_resource type="Texture2D" uid="uid://h2icuqdv6kk0" path="res://scenes/demon_parts/heads1.png" id="1_ujo0j"]
-[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_twc44"]
+[ext_resource type="Texture2D" uid="uid://h2icuqdv6kk0" path="res://scenes/demon_parts/heads1.png" id="1_pr4kj"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_74opw"]
 
 [node name="Head1" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(12, -10)
-texture = ExtResource("1_ujo0j")
+texture = ExtResource("1_pr4kj")
 region_enabled = true
 region_rect = Rect2(179, 57, 57, 51)
 
@@ -15,14 +15,14 @@ region_rect = Rect2(179, 57, 57, 51)
 z_index = -1
 position = Vector2(-12, -13)
 rotation = 2.24658
-script = ExtResource("2_twc44")
+script = ExtResource("2_74opw")
 type = &"upper_arm"
 same_as_others = false
 
 [node name="BodypartMarker2" type="Node2D" parent="."]
 z_index = -1
 position = Vector2(9, -5)
-rotation = 3.69221
-script = ExtResource("2_twc44")
+rotation = 4.7165
+script = ExtResource("2_74opw")
 type = &"upper_arm"
 same_as_others = false

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr5mtf57oiylk"]
+
+[ext_resource type="Texture2D" uid="uid://dedbces6l48nw" path="res://scenes/demon_parts/arms1.png" id="1_bu32p"]
+[ext_resource type="Script" path="res://types/bodypart_marker.gd" id="2_7lpcb"]
+[ext_resource type="Script" path="res://types/sin_animator.gd" id="3_kn2o3"]
+
+[node name="Uarm1" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-2, 7)
+rotation = -0.00158454
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(6.97705, 23.0504)
+rotation = -0.337451
+texture = ExtResource("1_bu32p")
+region_enabled = true
+region_rect = Rect2(132, 4, 43, 73)
+
+[node name="BodypartMarker" type="Node2D" parent="Node2D"]
+show_behind_parent = true
+position = Vector2(15.133, 43.3127)
+rotation = -0.425836
+script = ExtResource("2_7lpcb")
+type = &"lower_arm"
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_kn2o3")
+property_name = &"rotation"
+target = NodePath("../Node2D")
+max_value = 0.245
+offset = 4.95896
+random_offset = true
