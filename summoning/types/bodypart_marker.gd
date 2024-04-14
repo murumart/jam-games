@@ -1,6 +1,8 @@
 @tool
 class_name BodypartMarker extends Node2D
 
+signal finished(final_stats: DemonStats)
+
 const MAX_RECURSION = 96
 
 @export var type := &""
@@ -20,12 +22,15 @@ func _draw() -> void:
 
 
 func start_generating(parts: Dictionary, demon_stats: DemonStats) -> void:
-	parts[&"_demon_stats"] = demon_stats
+	parts[&"_demon_stats"] = DemonStats.new()
+	parts[&"_desired_stats"] = demon_stats
 	parts[&"_demon_addition_meta"] = {}
 	parts[&"_demon_addition_meta"][&"_max_recursion"] = randi_range(15, MAX_RECURSION)
 	_add_next_part(parts, 0)
 	parts.erase(&"_part_addition_meta")
+	finished.emit(parts[&"_demon_stats"])
 	parts.erase(&"_demon_stats")
+	parts.erase(&"_desired_stats")
 
 
 func _add_next_part(parts: Dictionary, rec_depth: int) -> void:
@@ -36,7 +41,17 @@ func _add_next_part(parts: Dictionary, rec_depth: int) -> void:
 	if not is_in_group("_bodypart_markers"):
 		return
 	remove_from_group("_bodypart_markers")
-	var part_dict := _pick_part(parts)
+	var demon_stats := parts[&"_demon_stats"] as DemonStats
+	var desired_stats := parts[&"_desired_stats"] as DemonStats
+	var difference := demon_stats.difference(desired_stats)
+	var part_dict := _pick_part(parts, difference)
+	difference = demon_stats.difference(desired_stats)
+	if absf(difference) < 5:
+		rec_depth += 20
+	if difference > 5:
+		rec_depth += 20
+	for x in DemonStats.STATS.keys():
+		demon_stats.set(x, demon_stats.get(x) + part_dict.get(x, 0))
 	var part := part_dict[&"scene"].instantiate() as Node2D
 	get_parent().add_child(part)
 	part.transform = transform
@@ -59,9 +74,11 @@ func _add_next_part(parts: Dictionary, rec_depth: int) -> void:
 	queue_free()
 
 
-func _pick_part(parts: Dictionary) -> Dictionary:
+func _pick_part(parts: Dictionary, difference: float) -> Dictionary:
 	var addition_meta := {}
 	var demon_stats := parts[&"_demon_stats"] as DemonStats
+
+	print(difference)
 	if same_as_others:
 		if not parts.has(&"_part_addition_meta"):
 			parts[&"_part_addition_meta"] = {}

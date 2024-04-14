@@ -11,3 +11,9 @@ static func intro_animation(on_what: CanvasItem, timescale: float = 1.0) -> void
 			on_what, "modulate", on_what.modulate, 0.2 * timescale).from(Color(0.5, 0.0, 0.5, 0.0))
 	tw.parallel().tween_property(
 			on_what, "rotation", on_what.rotation, 0.3 * timescale).from(randf_range(-0.5, 0.5))
+
+
+static func squeeze_in(what: CanvasItem, timescale := 1.0) -> void:
+	var tw := what.create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(what, "scale:y", what.scale.y, 1.0 * timescale).from(0.0)
+

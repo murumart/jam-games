@@ -1,7 +1,9 @@
 extends Node2D
 
 const UIType := preload("res://scenes/main_ui/main_ui.gd")
+const DESIRED_ROOMS := 6
 
+var current_room := Vector2i()
 var rooms_map := {}
 var inventory := {}
 
@@ -12,9 +14,20 @@ var inventory := {}
 
 
 func _ready() -> void:
+	ui.inventory = inventory
 	gen_dungeon()
 	battle_manager.battler_info_returned.connect(func(info: BattlerInfo, is_enemy: bool):
 		ui.add_battle_info(info, is_enemy)
+	)
+	ui.move_requested.connect(func(dir: Vector2):
+		if rooms_map.get(current_room + Vector2i(dir), false):
+			rooms_map.get(current_room, {})[&"visited"] = true
+			current_room = current_room + Vector2i(dir)
+			ui.move_to_room(current_room)
+	)
+	ui.move_finished.connect(_entered_room)
+	ui.cleanup_room_requested.connect(func():
+		battle_manager.reset()
 	)
 
 
@@ -33,8 +46,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func gen_dungeon() -> void:
 	var tiles_ar: Array[Vector2i] = []
-	const DESIRED_ROOMS := 6
 	var head := Vector2i()
+	var nr := 0
 	while rooms_map.size() <= DESIRED_ROOMS:
 		if rooms_map.get(head, false):
 			if randf() < 0.5:
@@ -42,7 +55,8 @@ func gen_dungeon() -> void:
 			else:
 				head.y += (randi() % 2) * 2 - 1
 			continue
-		rooms_map[head] = true
+		rooms_map[head] = _gen_room_data(nr)
+		nr += 1
 		tiles_ar.append(head)
 		if randf() < 0.5:
 			head.x += (randi() % 2) * 2 - 1
@@ -50,5 +64,42 @@ func gen_dungeon() -> void:
 			head.y += (randi() % 2) * 2 - 1
 	ui.set_tiles(tiles_ar)
 	ui.move_to_room(Vector2i.ZERO)
+
+
+func _gen_room_data(nr: int) -> Dictionary:
+	var d := {}
+	# nothing in first room
+	if nr == 0:
+		d[&"first"] = true
+		return d
+	d[&"has_enemy"] = randf() < 0.5
+	d[&"has_chest"] = randf() < 0.5 and not d[&"has_enemy"]
+	return d
+
+
+func ui_mov_display() -> void:
+	ui.available_movement_display(
+		{
+			"left": false if not rooms_map.get(current_room + Vector2i.LEFT, false) else true,
+			"right": false if not rooms_map.get(current_room + Vector2i.RIGHT, false) else true,
+			"up": false if not rooms_map.get(current_room + Vector2i.UP, false) else true,
+			"down": false if not rooms_map.get(current_room + Vector2i.DOWN, false) else true,
+		}
+	)
+
+
+func _entered_room() -> void:
+	var room := rooms_map[current_room] as Dictionary
+	print(room)
+	var enemy := room.get(&"has_enemy", false) as bool
+	var visited := room.get(&"visited", false) as bool
+	if enemy and not visited:
+		battle_manager.start_battle()
+		battle_manager.battle_ended.connect(func():
+			ui.battle_end()
+			ui_mov_display()
+		, CONNECT_ONE_SHOT)
+		return
+	ui_mov_display()
 
 

@@ -1,12 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://5ys1c4rc423e"]
+[gd_scene load_steps=20 format=3 uid="uid://5ys1c4rc423e"]
 
 [ext_resource type="Theme" uid="uid://bmemojp8a4hny" path="res://scenes/main_ui/main_theme.tres" id="1_kqh3u"]
 [ext_resource type="Script" path="res://scenes/main_ui/main_ui.gd" id="2_4w2jc"]
 [ext_resource type="Texture2D" uid="uid://usfwojfs4ego" path="res://scenes/main_ui/dungeon_map_tiles.png" id="2_hanf1"]
+[ext_resource type="PackedScene" uid="uid://dx5yeavk8ewbj" path="res://scenes/main_ui/movement_panel.tscn" id="3_bo6hj"]
 [ext_resource type="StyleBox" uid="uid://6uh2mxfgyel7" path="res://scenes/main_ui/main_stile.tres" id="3_diio8"]
 [ext_resource type="Texture2D" uid="uid://clq60c2jiwa4j" path="res://scenes/main_ui/dmt.png" id="4_kay37"]
 [ext_resource type="Script" path="res://scenes/main_ui/drawing_tablet.gd" id="6_cw3e0"]
 [ext_resource type="Script" path="res://scenes/main_ui/summoning_circle_screen.gd" id="6_gwf4o"]
+[ext_resource type="Texture2D" uid="uid://c7nmknxc7devs" path="res://scenes/main_ui/items.png" id="7_8x2h1"]
+[ext_resource type="Script" path="res://scenes/main_ui/scr_message_container.gd" id="10_snp8q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8b3j"]
 bg_color = Color(0, 0, 0, 1)
@@ -117,6 +120,20 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_iov4k")
 sources/0 = SubResource("TileSetAtlasSource_g0xwf")
 
+[sub_resource type="Gradient" id="Gradient_1njfd"]
+colors = PackedColorArray(0.0627451, 0, 0.0431373, 1, 0.243137, 0, 0.0705882, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5wtii"]
+gradient = SubResource("Gradient_1njfd")
+width = 600
+height = 350
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnuj6"]
+atlas = ExtResource("7_8x2h1")
+region = Rect2(32, 16, 16, 16)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn2eh"]
 bg_color = Color(0.247059, 0.192157, 0.196078, 1)
 corner_radius_top_left = 4
@@ -135,6 +152,27 @@ grow_vertical = 2
 theme = ExtResource("1_kqh3u")
 script = ExtResource("2_4w2jc")
 metadata/_edit_lock_ = true
+
+[node name="Fade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MessageContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 565.0
+offset_bottom = 123.0
+script = ExtResource("10_snp8q")
+life_time = 2.2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -156,6 +194,10 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="MovementPanel" parent="PanelContainer/MarginContainer/HBoxContainer/LeftWizardPanel" instance=ExtResource("3_bo6hj")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="DungeonMap" type="Panel" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -213,11 +255,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[node name="Shadow" type="TextureRect" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture2D_5wtii")
 
 [node name="SummoningCircleScreen" type="PanelContainer" parent="CenterContainer"]
 visible = false
-custom_minimum_size = Vector2(256, 128)
+custom_minimum_size = Vector2(256, 196)
 layout_mode = 2
 script = ExtResource("6_gwf4o")
 
@@ -254,6 +302,25 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/InventoryPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 76.0
+offset_bottom = 22.0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/InventoryPanel/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jnuj6")
+stretch_mode = 4
+
+[node name="BloodLabel" type="Label" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/InventoryPanel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "blood: %sml"
+autowrap_mode = 2
 
 [node name="Panel2" type="Panel" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -295,10 +362,10 @@ script = ExtResource("6_cw3e0")
 [node name="SummonButton" type="Button" parent="CenterContainer/SummoningCircleScreen/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/MarginContainer/DrawingTablet"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 99.0
-offset_top = 99.0
-offset_right = 183.0
-offset_bottom = 123.0
+offset_left = 80.0
+offset_top = 180.0
+offset_right = 164.0
+offset_bottom = 204.0
 focus_mode = 0
 text = "summon"
 

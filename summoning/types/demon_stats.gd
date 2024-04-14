@@ -26,10 +26,25 @@ const STATS = {
 @export var birdness := 0
 
 
-func calc_attack_damage() -> float:
-	return power + 1 + (bravery * 0.1) - (incorporeality * 0.1)
+func calc_attack() -> Dictionary:
+	var attk := {}
+	attk[&"damage"] = 2 + power + (bravery * 0.1) - (incorporeality * 0.1)
+	return attk
 
 
-func calc_received_damage(input: float, prpts := {}) -> float:
-	return maxf(input - (maxf(defense - prpts.get(&"piercing", 0), 0)), 0)
+func calc_received_damage(prpts: Dictionary) -> float:
+	var attack := prpts[&"damage"] as float
+	return maxf(attack - (maxf(defense - prpts.get(&"piercing", 0), 0)), 0)
+
+
+func _to_string() -> String:
+	return JSON.stringify(STATS.keys().map(func(a): return str(a, "=", get(a))))
+
+
+func difference(minus: DemonStats) -> float:
+	var diff := 0.0
+	for k in STATS.keys():
+		diff += get(k) - (minus.get(k) if minus else 0)
+	return diff
+
 

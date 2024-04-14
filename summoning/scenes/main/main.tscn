@@ -19,16 +19,23 @@ scale = Vector2(-1, 1)
 script = ExtResource("2_jwqr7")
 
 [node name="UI" parent="." instance=ExtResource("1_lfanq")]
+z_index = 5
 custom_minimum_size = Vector2(4.595, 7.375)
 offset_right = 576.0
 offset_bottom = 324.0
 size_flags_horizontal = 4
 
-[node name="BattleManager" type="Node" parent="." node_paths=PackedStringArray("player_spot", "enemy_spot", "ui")]
+[node name="BattleManager" type="Node" parent="." node_paths=PackedStringArray("player_spot", "enemy_spot", "player_wizard", "enemy_wizard", "ui")]
 script = ExtResource("4_1kcj1")
 player_spot = NodePath("../Demon1Spot")
 enemy_spot = NodePath("../Demon2Spot")
+player_wizard = NodePath("../PlayerWizard")
+enemy_wizard = NodePath("../EnemyWizard")
 ui = NodePath("../UI")
 
-[node name="Wizard" parent="." instance=ExtResource("2_pbf5e")]
+[node name="PlayerWizard" parent="." instance=ExtResource("2_pbf5e")]
 position = Vector2(37, 226)
+
+[node name="EnemyWizard" parent="." instance=ExtResource("2_pbf5e")]
+position = Vector2(677, 233)
+scale = Vector2(-1, 1)

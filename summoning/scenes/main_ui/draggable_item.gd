@@ -14,6 +14,7 @@ var type := Types.CANDLE:
 		if not texture:
 			return
 		var column := int(type) % 4
+		@warning_ignore("integer_division")
 		var row := (int(type) - column) / 4
 		(texture as AtlasTexture).region = Rect2(
 				column * TEX_SIZE, row * TEX_SIZE, TEX_SIZE, TEX_SIZE)
@@ -26,9 +27,9 @@ var shadow: Sprite2D
 var highlight: Sprite2D
 
 
-static func create(type: Types) -> DraggableItem:
+static func create(typé: Types) -> DraggableItem:
 	var a := load("res://scenes/main_ui/draggable_item.tscn").instantiate() as DraggableItem
-	a.type = type
+	a.type = typé
 	return a
 
 
@@ -50,7 +51,7 @@ func _input(event: InputEvent) -> void:
 			remove_shadow()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if dragging:
 		global_position = (get_global_mouse_position() - click_point).clamp(
 			move_area.position, move_area.position + move_area.size - size

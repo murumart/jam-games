@@ -12,36 +12,39 @@ var draw_into := {
 	DrawingModes.SOOT: soot,
 }
 var drawing_mode := DrawingModes.BLOOD
-var saved_line_start := Vector2()
-var line_start := Vector2()
-var line_end := Vector2()
+var blood_left := 100:
+	set(to):
+		blood_left = to
+		if is_instance_valid(blood_label):
+			blood_label.text = str("blood: ", to, "ml")
 
 var items := []
 
-@onready var dbg := $"../../../../../../../../../debug"
+@onready var blood_label: Label = %BloodLabel
+#@onready var dbg := $"../../../../../../../../../debug"
+
 
 func _input(event: InputEvent) -> void:
 	if dragging_something_else:
 		return
 	if enabled and event is InputEventMouse and not dragging_something_else\
-	and get_rect().has_point(get_local_mouse_position()):
+	and get_rect().has_point(get_local_mouse_position()) and blood_left > 0:
+		var old_blood := blood.size()
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
-			draw_into[drawing_mode][(Vector2i(get_local_mouse_position()))] = true
-			queue_redraw()
-			if not line_start:
-				line_start = get_local_mouse_position()
-		elif event.is_released():
-			saved_line_start = line_start if line_start else saved_line_start
-			line_end = get_local_mouse_position() if line_start else line_end
-			line_start = Vector2()
+			var p := draw_into[drawing_mode] as Dictionary
+			if p.size() < 2 or Vector2(p.keys()[-1]).distance_squared_to(
+			get_local_mouse_position()) < 60:
+				p[(Vector2i(get_local_mouse_position()))] = true
+			if blood.size() > old_blood:
+				blood_left -= blood.size() - old_blood
 			queue_redraw()
 
 
 func _draw() -> void:
 	_draw_lines(blood, Color.RED)
 	_draw_lines(soot, Color.BLACK)
-	dbg.text = JSON.stringify(circle_measurements()).replace(",", ",\n")
-	dbg.text += "\n" + JSON.stringify(pentagram_measurements()).replace(",", ",\n")
+	#dbg.text = JSON.stringify(circle_measurements()).replace(",", ",\n")
+	#dbg.text += "\n" + JSON.stringify(pentagram_measurements()).replace(",", ",\n")
 
 
 func _draw_lines(dict: Dictionary, color: Color) -> void:
@@ -79,12 +82,13 @@ func circle_measurements() -> Dictionary:
 		&"circle_centre": circle_centre,
 		&"average_radius": average_radius,
 		&"average_mistake": average_mistake,
+		&"blood_used": blood.size(),
 	}
 
 
 func pentagram_measurements() -> Dictionary:
 	var item_centre := Vector2()
-	var loop_times := 0
+	var _loop_times := 0
 	var candles := items.size()
 	for x in items.size():
 		var item := items[x] as DraggableItem
@@ -95,11 +99,12 @@ func pentagram_measurements() -> Dictionary:
 			var item2 := items[y] as DraggableItem
 			if not item2.type == DraggableItem.Types.CANDLE:
 				continue
-			draw_line(
+			draw.connect(func(): draw_line(
 					item.global_position - global_position + item.size / 2,
 					item2.global_position - global_position + item2.size / 2,
-					Color(0, 0, 1, 0.2))
-			loop_times += 1
+					Color(0, 0, 1, 0.2)))
+			queue_redraw()
+			_loop_times += 1
 		item_centre += item.global_position + item.get_rect().size / 2 - global_position
 	item_centre /= candles
 
@@ -127,7 +132,8 @@ func pentagram_measurements() -> Dictionary:
 	return {
 		&"item_centre": item_centre,
 		&"average_distance": average_distance,
-		&"average_mistake": remap(maxf(average_mistake, 6.0), 6.0, 10, 0.0, 1.0)
+		&"average_mistake": remap(maxf(average_mistake, 6.0), 6.0, 10, 0.0, 1.0),
+		&"points": items.size(),
 	}
 
 

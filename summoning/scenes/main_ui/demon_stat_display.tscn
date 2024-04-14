@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://csl4dfbdi5d7t"]
+[gd_scene load_steps=5 format=3 uid="uid://csl4dfbdi5d7t"]
+
+[ext_resource type="Theme" uid="uid://bmemojp8a4hny" path="res://scenes/main_ui/main_theme.tres" id="1_whlu4"]
+[ext_resource type="Script" path="res://scenes/main_ui/demon_stat_display.gd" id="2_xhsx5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6p0s"]
 bg_color = Color(0, 0, 0, 1)
@@ -7,6 +10,8 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(1, 1, 1, 1)
 
 [node name="DemonStatDisplay" type="PanelContainer"]
+theme = ExtResource("1_whlu4")
+script = ExtResource("2_xhsx5")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(1, 1, 1, 0.4)
