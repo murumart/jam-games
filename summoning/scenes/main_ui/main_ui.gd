@@ -23,6 +23,7 @@ func _ready() -> void:
 	summoning_circle_screen.inventory = inventory
 	movement_panel.move_requested.connect(func(dir: Vector2): move_requested.emit(dir))
 	movement_panel.summon_screen_requested.connect(func():
+		print("calling open drawing tablet")
 		open_drawing_tablet()
 	)
 

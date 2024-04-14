@@ -99,6 +99,11 @@ func _entered_room() -> void:
 			ui.battle_end()
 			ui_mov_display()
 		, CONNECT_ONE_SHOT)
+		battle_manager.player_lost.connect(func():
+			LevelTransition.level_transition(
+					get_tree(), 
+					"res://scenes/screens/game_over_screen.tscn")
+		)
 		return
 	ui_mov_display()
 

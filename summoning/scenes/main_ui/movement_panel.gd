@@ -17,6 +17,7 @@ func _ready() -> void:
 	up.pressed.connect(func(): move_requested.emit(Vector2.UP))
 	down.pressed.connect(func(): move_requested.emit(Vector2.DOWN))
 	demon_summon_button.pressed.connect(func():
+		print("summon button")
 		demon_summon_button.disabled = true
 		summon_screen_requested.emit()
 	)
