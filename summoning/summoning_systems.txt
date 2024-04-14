@@ -1,0 +1,25 @@
+summoning circle scoring system
+
+we get - 
+	circle centre
+	circle radius
+	circle mistake
+	candlegram centre
+	candlegram centre
+	candlegram mistake
+
++perfection score:
+	circle and candlegram centres close together
+	circle and candlegram radii similar
+	circle mistake & candlegram mistakes small
+
+perfection score increases demon health, defense, speed, power
+
+special item scores increase other things.
+	piercing - knife
+	evasion - silk
+	incorporeality - incence
+	temperature - candles
+	bravery - heart
+	birdness - feathers
+	more blood used - more health
