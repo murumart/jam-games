@@ -23,6 +23,10 @@ window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom="res://scenes/main_ui/main_theme.tres"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

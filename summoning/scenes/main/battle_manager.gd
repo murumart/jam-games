@@ -2,6 +2,7 @@ class_name BattleManager extends Node
 
 signal battler_info_returned(info: BattlerInfo, is_enemy: bool)
 signal battle_ended
+signal player_lost
 
 const UIType := preload("res://scenes/main_ui/main_ui.gd")
 
@@ -104,4 +105,6 @@ func _battle_ended() -> void:
 		await create_tween().tween_interval(2.0).finished
 		reset()
 		battle_ended.emit()
+		return
+	player_lost.emit()
 

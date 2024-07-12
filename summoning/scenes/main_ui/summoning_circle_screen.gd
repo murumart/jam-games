@@ -19,8 +19,11 @@ func _input(_event: InputEvent) -> void:
 
 
 func start() -> void:
+	print("summoning tablet start")
 	show()
+	modulate.a = 1.0
 	shadow.show()
+	shadow.modulate.a = 1.0
 	GeneralAnimations.intro_animation(self)
 	GeneralAnimations.squeeze_in(shadow, 4.0)
 	get_tree().process_frame.connect(func(): DraggableItem.move_area = get_global_rect(), CONNECT_ONE_SHOT)
