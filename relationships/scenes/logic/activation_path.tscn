@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq6rvo38x2l1j"]
+
+[ext_resource type="Texture2D" uid="uid://cl38b0uosgcfo" path="res://scenes/logic/wire.png" id="1_rfwmd"]
+[ext_resource type="Texture2D" uid="uid://bu06rjhll3u3c" path="res://scenes/logic/wire_normal.png" id="2_1o2rt"]
+[ext_resource type="Script" path="res://scenes/logic/activation_path.gd" id="3_hksa1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_k583w"]
+diffuse_texture = ExtResource("1_rfwmd")
+normal_texture = ExtResource("2_1o2rt")
+
+[node name="ActivationPath" type="Line2D"]
+texture_repeat = 2
+default_color = Color(1.2, 1.2, 1.2, 1)
+texture = SubResource("CanvasTexture_k583w")
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource("3_hksa1")

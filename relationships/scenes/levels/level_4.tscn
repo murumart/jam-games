@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://bpi0tegs34vte"]
+
+[ext_resource type="TileSet" uid="uid://dvglcpxijlp37" path="res://scenes/tileset/tileset_1.tres" id="1_jyfpn"]
+[ext_resource type="PackedScene" uid="uid://ct44br4ycnymj" path="res://scenes/player/copy_player.tscn" id="2_jdy0e"]
+[ext_resource type="PackedScene" uid="uid://2u1va1tyj2cg" path="res://scenes/player/player.tscn" id="3_jf46r"]
+[ext_resource type="Script" path="res://scenes/logic/death_area.gd" id="4_41hku"]
+[ext_resource type="PackedScene" uid="uid://dec7g2diqnceq" path="res://scenes/logic/tube.tscn" id="5_g40ba"]
+[ext_resource type="PackedScene" uid="uid://bqn0bm5d0huao" path="res://scenes/buttons/button.tscn" id="6_ycv60"]
+[ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="7_xrmmm"]
+[ext_resource type="Script" path="res://types/bool_checker.gd" id="8_pabkb"]
+[ext_resource type="Script" path="res://types/condition.gd" id="9_l5xes"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgmco"]
+size = Vector2(788, 36)
+
+[sub_resource type="Resource" id="Resource_23ko8"]
+script = ExtResource("9_l5xes")
+node = NodePath("../ActivationPath")
+property_path = &"_is_activated"
+any_true_value = [true]
+
+[sub_resource type="Resource" id="Resource_odms8"]
+script = ExtResource("9_l5xes")
+node = NodePath("../ActivationPath2")
+property_path = &"_is_activated"
+any_true_value = [true]
+
+[sub_resource type="Resource" id="Resource_rr2hs"]
+script = ExtResource("9_l5xes")
+node = NodePath("../ActivationPath3")
+property_path = &"_is_activated"
+any_true_value = [true]
+
+[node name="Level4" type="Node2D"]
+
+[node name="Tube" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_g40ba")]
+position = Vector2(188, 141)
+top_tube_length = 200
+bottom_tube_length = 220
+open = false
+player = NodePath("../CopyPlayer")
+next_scene = "res://scenes/levels/level_5.tscn"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_jyfpn")
+format = 2
+layer_0/tile_data = PackedInt32Array(589828, 65537, 0, 655364, 1, 1, 720900, 1, 2, 589829, 131073, 3, 589830, 131073, 3, 589831, 131073, 3, 589832, 131073, 3, 589833, 131073, 3, 589834, 131073, 3, 589835, 131073, 3, 589836, 131073, 3, 655360, 65537, 2, 589837, 131073, 3, 655377, 65537, 3, 655378, 196609, 2, 589838, 196609, 0, 655374, 1, 1, 720910, 1, 2, -65532, 1, 0, 4, 1, 1, 65540, 1, 1, 131086, 196609, 2, 131085, 131073, 3, 131084, 131073, 3, 131083, 131073, 3, 131082, 131073, 3, 131081, 131073, 3, 131080, 131073, 3, 131079, 131073, 3, 131078, 131073, 3, 131077, 131073, 3, 131076, 65537, 2, 65550, 1, 1, 14, 1, 1, -65522, 1, 0, 17, 65537, 3, 18, 196609, 0, 1, 196609, 3, 0, 65537, 0, 655361, 196609, 3, 65536, 1, 1, 131072, 1, 1, 196608, 1, 2, 65554, 1, 1, 131090, 1, 1, 196626, 1, 2, 589842, 1, 1, 524306, 1, 1, 458770, 1, 0, 589824, 1, 1, 524288, 1, 1, 458752, 1, 0)
+
+[node name="ActivationPath3" parent="." instance=ExtResource("7_xrmmm")]
+modulate = Color(0.282353, 1, 1, 1)
+points = PackedVector2Array(186, 41, 186, 129)
+can_deactivate = true
+
+[node name="CopyPlayer" parent="." node_paths=PackedStringArray("copy_from") instance=ExtResource("2_jdy0e")]
+position = Vector2(128, 169)
+copy_from = NodePath("../Player")
+copy_properties = Array[StringName]([&"_direction"])
+flip_numerics = Array[StringName]([&"_direction"])
+copy_jumps = true
+
+[node name="Player" parent="." instance=ExtResource("3_jf46r")]
+position = Vector2(127, 29)
+
+[node name="DeathArea" type="Area2D" parent="."]
+position = Vector2(203, 267)
+script = ExtResource("4_41hku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+shape = SubResource("RectangleShape2D_cgmco")
+debug_color = Color(0.872789, 0.000463018, 0.842707, 0.42)
+
+[node name="Button" parent="." instance=ExtResource("6_ycv60")]
+position = Vector2(30, 200)
+
+[node name="Button2" parent="." instance=ExtResource("6_ycv60")]
+position = Vector2(350, 200)
+
+[node name="Button3" parent="." instance=ExtResource("6_ycv60")]
+position = Vector2(187, 40)
+mode = 1
+
+[node name="ActivationPath" parent="." instance=ExtResource("7_xrmmm")]
+modulate = Color(0.572549, 1, 0.380392, 1)
+points = PackedVector2Array(30, 203, 45.2135, 203, 44, 267, 84, 268, 84, 203, 189, 203)
+
+[node name="ActivationPath2" parent="." instance=ExtResource("7_xrmmm")]
+modulate = Color(0.298039, 1, 0.360784, 1)
+points = PackedVector2Array(349, 199, 336, 199, 337, 266, 289, 280, 290, 187, 194, 187)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.215902, 0.215902, 0.215902, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = -0.234167
+shadow_enabled = true
+shadow_item_cull_mask = 2
+
+[node name="BoolChecker" type="Node" parent="."]
+script = ExtResource("8_pabkb")
+conditions = Array[ExtResource("9_l5xes")]([SubResource("Resource_23ko8"), SubResource("Resource_odms8"), SubResource("Resource_rr2hs")])
+
+[node name="BoolActivator" parent="." node_paths=PackedStringArray("activator") instance=ExtResource("7_xrmmm")]
+activator = NodePath("../BoolChecker")
+can_deactivate = true
+
+[connection signal="pressed" from="Button" to="ActivationPath" method="activate"]
+[connection signal="pressed" from="Button2" to="ActivationPath2" method="activate"]
+[connection signal="pressed" from="Button3" to="ActivationPath3" method="activate"]
+[connection signal="pressed" from="Button3" to="BoolActivator" method="test"]
+[connection signal="released" from="Button3" to="ActivationPath3" method="deactivate"]
+[connection signal="released" from="Button3" to="BoolActivator" method="test"]
+[connection signal="activated" from="BoolActivator" to="Tube" method="open_up"]
+[connection signal="deactivated" from="BoolActivator" to="Tube" method="close_down"]

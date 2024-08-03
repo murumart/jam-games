@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://tyg52dyidare"]
+
+[ext_resource type="TileSet" uid="uid://dvglcpxijlp37" path="res://scenes/tileset/tileset_1.tres" id="1_123r5"]
+[ext_resource type="PackedScene" uid="uid://dec7g2diqnceq" path="res://scenes/logic/tube.tscn" id="1_vfdcp"]
+[ext_resource type="PackedScene" uid="uid://2u1va1tyj2cg" path="res://scenes/player/player.tscn" id="2_6cuiu"]
+[ext_resource type="PackedScene" uid="uid://ct44br4ycnymj" path="res://scenes/player/copy_player.tscn" id="3_adx1r"]
+[ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="3_cact0"]
+[ext_resource type="PackedScene" uid="uid://bqn0bm5d0huao" path="res://scenes/buttons/button.tscn" id="4_4w1ov"]
+[ext_resource type="Texture2D" uid="uid://d0ljqgpt2t1vy" path="res://scenes/tileset/bulb_light.tres" id="7_1x60t"]
+
+[node name="Level3" type="Node2D"]
+
+[node name="Tube" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_vfdcp")]
+position = Vector2(298, 163)
+top_tube_length = 26
+open = false
+player = NodePath("../Player")
+next_scene = "res://scenes/levels/level_4.tscn"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_123r5")
+format = 2
+layer_0/tile_data = PackedInt32Array(524288, 655361, 0, 524289, 655361, 0, 524290, 655361, 0, 524291, 655361, 0, 524292, 655361, 0, 524293, 720897, 0, 589829, 393217, 1, 655365, 589825, 2, 655364, 589825, 2, 655363, 589825, 2, 655362, 589825, 2, 655361, 589825, 2, 655360, 589825, 2, 655359, 524289, 1, 589824, 589825, 2, 589825, 589825, 2, 589826, 589825, 2, 589827, 589825, 2, 589828, 589825, 2, 786431, 524289, 3, 720895, 524289, 1, 589823, 262145, 1, 524287, 1, 1, 458751, 1, 1, 393215, 1, 1, 327679, 1, 1, 262143, 1, 1, 196607, 1, 1, 131071, 1, 1, 65535, 1, 1, -1, 1, 0, 720896, 589825, 3, 720897, 589825, 3, 720898, 589825, 3, 720899, 589825, 3, 720900, 589825, 3, 720902, 589825, 3, 720901, 589825, 3, 720903, 589825, 3, 720904, 589825, 3, 720905, 589825, 3, 720907, 589825, 3, 720906, 589825, 3, 720909, 589825, 3, 720908, 589825, 3, 720910, 589825, 3, 655375, 655361, 0, 655376, 655361, 0, 655377, 655361, 0, 655378, 327681, 1, 720914, 589825, 3, 720913, 589825, 3, 720912, 589825, 3, 720911, 589825, 3, 655374, 655361, 0, 655373, 655361, 0, 655372, 655361, 0, 655371, 655361, 0, 655370, 655361, 0, 655369, 655361, 0, 655368, 655361, 0, 655367, 655361, 0, 655366, 393217, 1, 589830, 720897, 0, 8, 524289, 1, 65544, 524289, 1, 131080, 524289, 1, 196616, 524289, 3, 196617, 655361, 2, 131081, 720897, 2, 65545, 720897, 2, 9, 720897, 2, 262153, 524289, 3, 262154, 589825, 3, 262155, 589825, 3, 262156, 589825, 3, 196624, 524289, 0, 262159, 131073, 3, 262158, 131073, 3, 262157, 393217, 3, 262160, 327681, 3, 262161, 589825, 3, 196625, 655361, 0, -65518, 524289, 0, 18, 524289, 1, 65554, 524289, 1, 131090, 524289, 1, 196626, 327681, 1, 262162, 327681, 2, -65528, 524289, 1, -65527, 720897, 2, -131063, 720897, 0, -131064, 524289, 0, 196618, 655361, 0, 196619, 655361, 0, 589842, 524289, 1, 524306, 524289, 1, 458770, 524289, 1, 393234, 524289, 1, 327698, 524289, 1, 327699, 720897, 2, 393235, 720897, 2, 458771, 720897, 2, 524307, 720897, 2, 589843, 720897, 2, 655379, 720897, 2, 720915, 720897, 3, 262163, 720897, 2, 196627, 720897, 2, 65555, 720897, 2, 131091, 720897, 2, 19, 720897, 2, -65517, 720897, 0, 196620, 655361, 0, 196621, 720897, 0)
+
+[node name="ActivationPath" parent="." instance=ExtResource("3_cact0")]
+points = PackedVector2Array(300, 81, 300, 97, 370, 97, 370, 201, 302, 201)
+
+[node name="Player" parent="." instance=ExtResource("2_6cuiu")]
+position = Vector2(20, 149)
+
+[node name="CopyPlayer" parent="." node_paths=PackedStringArray("copy_from") instance=ExtResource("3_adx1r")]
+position = Vector2(219, 48)
+copy_from = NodePath("../Player")
+copy_movement = true
+copy_jumps = true
+
+[node name="Button" parent="." instance=ExtResource("4_4w1ov")]
+position = Vector2(300, 80)
+mode = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.325441, 0.325441, 0.325441, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(278, 38)
+scale = Vector2(3.87044, 1.49692)
+color = Color(1, 0.639216, 0.509804, 1)
+texture = ExtResource("7_1x60t")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(71, 35)
+rotation = 0.595303
+scale = Vector2(11.8287, -1.77593)
+color = Color(0.907719, 0.717549, 0, 1)
+texture = ExtResource("7_1x60t")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(278, 244)
+rotation = -1.29047
+scale = Vector2(11.8287, -1.77593)
+color = Color(0.415686, 0.717647, 0, 1)
+texture = ExtResource("7_1x60t")
+
+[connection signal="activated" from="ActivationPath" to="Tube" method="open_up"]
+[connection signal="deactivated" from="ActivationPath" to="Tube" method="close_down"]
+[connection signal="pressed" from="Button" to="ActivationPath" method="activate"]
+[connection signal="released" from="Button" to="ActivationPath" method="deactivate"]

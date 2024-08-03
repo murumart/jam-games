@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dec7g2diqnceq"]
+
+[ext_resource type="Script" path="res://scenes/logic/tube.gd" id="1_3pqtb"]
+[ext_resource type="Texture2D" uid="uid://bskilf4y8e5qo" path="res://scenes/logic/tube_diff.png" id="1_6muu4"]
+[ext_resource type="Texture2D" uid="uid://f3atin5pumd5" path="res://scenes/logic/tube_normal.png" id="2_a545v"]
+[ext_resource type="Texture2D" uid="uid://cnnpuvl0qr6su" path="res://scenes/logic/tube_detail.png" id="4_wgpc5"]
+[ext_resource type="Texture2D" uid="uid://c7hlxxs8kj4rl" path="res://scenes/logic/tube_detail_normal.png" id="5_yb2ue"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m0pm5"]
+diffuse_texture = ExtResource("1_6muu4")
+normal_texture = ExtResource("2_a545v")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_of8lx"]
+diffuse_texture = ExtResource("4_wgpc5")
+normal_texture = ExtResource("5_yb2ue")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dv8w"]
+size = Vector2(28, 30)
+
+[node name="Tube" type="Node2D"]
+script = ExtResource("1_3pqtb")
+open = null
+next_scene = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_m0pm5")
+region_enabled = true
+region_rect = Rect2(2, 0, 22, 26)
+
+[node name="Cover" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_m0pm5")
+region_enabled = true
+region_rect = Rect2(4, 27, 18, 18)
+
+[node name="BgUp" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(6, -40)
+rotation = 1.5708
+texture = SubResource("CanvasTexture_of8lx")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 27, 11)
+
+[node name="BgDown" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(6, 13)
+rotation = 1.5708
+texture = SubResource("CanvasTexture_of8lx")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 27, 11)
+
+[node name="FinishArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea"]
+shape = SubResource("RectangleShape2D_7dv8w")

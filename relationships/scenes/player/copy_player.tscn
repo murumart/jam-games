@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct44br4ycnymj"]
+
+[ext_resource type="Script" path="res://scenes/player/copy_player.gd" id="1_67uxu"]
+[ext_resource type="Texture2D" uid="uid://btsnogd8x8ri2" path="res://scenes/player/copy_player_diffuse.png" id="2_npqct"]
+[ext_resource type="Texture2D" uid="uid://bonvo2qe2r0me" path="res://scenes/player/player_normal.png" id="3_bm0ln"]
+[ext_resource type="Texture2D" uid="uid://d0ljqgpt2t1vy" path="res://scenes/tileset/bulb_light.tres" id="4_rjblr"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1rd00"]
+diffuse_texture = ExtResource("2_npqct")
+normal_texture = ExtResource("3_bm0ln")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qcbf"]
+size = Vector2(18, 18)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mu757"]
+polygon = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+
+[node name="CopyPlayer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_67uxu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_1rd00")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1qcbf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.736157, 0.615606, 1)
+energy = 0.2
+texture = ExtResource("4_rjblr")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_mu757")
+occluder_light_mask = 2

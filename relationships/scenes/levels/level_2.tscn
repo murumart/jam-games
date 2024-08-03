@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxyfwc3aetvmo"]
+
+[ext_resource type="PackedScene" uid="uid://dec7g2diqnceq" path="res://scenes/logic/tube.tscn" id="1_k1dqf"]
+[ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="1_ovwq0"]
+[ext_resource type="TileSet" uid="uid://dvglcpxijlp37" path="res://scenes/tileset/tileset_1.tres" id="1_oyu5h"]
+[ext_resource type="PackedScene" uid="uid://2u1va1tyj2cg" path="res://scenes/player/player.tscn" id="3_ew0lo"]
+[ext_resource type="PackedScene" uid="uid://bqn0bm5d0huao" path="res://scenes/buttons/button.tscn" id="4_l7ej0"]
+[ext_resource type="Texture2D" uid="uid://d0ljqgpt2t1vy" path="res://scenes/tileset/bulb_light.tres" id="6_vevew"]
+[ext_resource type="Script" path="res://scenes/logic/death_area.gd" id="7_upry5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lthae"]
+size = Vector2(905, 68)
+
+[node name="Level2" type="Node2D"]
+
+[node name="ActivationPath" parent="." instance=ExtResource("1_ovwq0")]
+position = Vector2(268, 144)
+points = PackedVector2Array(2, -4, 2, -24, 8, -31, 33, -31)
+
+[node name="Tube" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_k1dqf")]
+position = Vector2(301, 118)
+top_tube_length = 161
+open = false
+player = NodePath("../Player")
+next_scene = "res://scenes/levels/level_3.tscn"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_oyu5h")
+format = 2
+layer_0/tile_data = PackedInt32Array(458752, 524289, 0, 458753, 655361, 0, 458754, 655361, 0, 458755, 720897, 0, 524288, 524289, 1, 524289, 589825, 2, 524290, 589825, 2, 524291, 720897, 2, 589827, 720897, 3, 589826, 589825, 3, 589825, 655361, 3, 589824, 524289, 3, 655367, 524289, 1, 589831, 524289, 1, 524295, 524289, 1, 458759, 524289, 0, 458760, 655361, 0, 458761, 655361, 0, 458762, 720897, 0, 524298, 720897, 2, 589834, 720897, 2, 655370, 720897, 2, 720905, 589825, 3, 720904, 589825, 3, 720903, 524289, 3, 524296, 589825, 2, 589832, 589825, 2, 589833, 589825, 2, 655369, 589825, 2, 524297, 589825, 2, 655368, 589825, 2, 720906, 720897, 3, 655361, 1, 1, 720897, 1, 1, 786433, 1, 1, 851969, 1, 2, 458765, 65537, 3, 458766, 327681, 0, 458767, 393217, 0, 458768, 196609, 3, 524302, 524289, 1, 589838, 524289, 1, 655374, 524289, 1, 720910, 524289, 1, 786446, 524289, 3, 786447, 720897, 3, 720911, 720897, 2, 655375, 720897, 2, 589839, 720897, 2, 524303, 720897, 2)
+
+[node name="Player" parent="." instance=ExtResource("3_ew0lo")]
+position = Vector2(19, 128)
+
+[node name="Button" parent="." instance=ExtResource("4_l7ej0")]
+position = Vector2(269, 140)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.329158, 0.329158, 0.329158, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(286, 84)
+scale = Vector2(0.665985, 3.34681)
+texture = ExtResource("6_vevew")
+
+[node name="DeathArea" type="Area2D" parent="."]
+position = Vector2(70, 267)
+script = ExtResource("7_upry5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(130.5, 24)
+shape = SubResource("RectangleShape2D_lthae")
+debug_color = Color(0.860264, 0.000671713, 0.875021, 0.42)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = -3.27515
+color = Color(1, 0.2, 0.533333, 1)
+
+[connection signal="activated" from="ActivationPath" to="Tube" method="open_up"]
+[connection signal="pressed" from="Button" to="ActivationPath" method="activate"]

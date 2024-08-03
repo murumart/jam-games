@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3hdexhadea40"]
+
+[ext_resource type="PackedScene" uid="uid://2u1va1tyj2cg" path="res://scenes/player/player.tscn" id="1_nh448"]
+[ext_resource type="PackedScene" uid="uid://ct44br4ycnymj" path="res://scenes/player/copy_player.tscn" id="2_2tn7t"]
+[ext_resource type="PackedScene" uid="uid://bqn0bm5d0huao" path="res://scenes/buttons/button.tscn" id="3_gr1bt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxj1q"]
+size = Vector2(402, 20)
+
+[sub_resource type="Gradient" id="Gradient_gxklx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oldks"]
+gradient = SubResource("Gradient_gxklx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_beu2x"]
+load_path = "res://.godot/imported/fd5f6900630c39f1657afbbf35979808ae21ed1b.png-6075b2fb08ad9d20ca5755fcd7fd6515.ctex"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ps8wu"]
+diffuse_texture = SubResource("CompressedTexture2D_beu2x")
+normal_texture = SubResource("CompressedTexture2D_beu2x")
+
+[node name="Test" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 209)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(191, 0)
+shape = SubResource("RectangleShape2D_vxj1q")
+
+[node name="Player" parent="." instance=ExtResource("1_nh448")]
+position = Vector2(55, 164)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(123, 117)
+scale = Vector2(4.90625, 4.59375)
+texture = SubResource("GradientTexture2D_oldks")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.396889, 0.396889, 0.396889, 1)
+
+[node name="CopyPlayer" parent="." node_paths=PackedStringArray("copy_from") instance=ExtResource("2_2tn7t")]
+position = Vector2(192, 163)
+copy_from = NodePath("../Player")
+copy_states = true
+
+[node name="Button" parent="." instance=ExtResource("3_gr1bt")]
+position = Vector2(103, 199)
+
+[node name="Button2" parent="." instance=ExtResource("3_gr1bt")]
+position = Vector2(145, 190)
+rotation = 1.5708
+
+[node name="Button4" parent="." instance=ExtResource("3_gr1bt")]
+position = Vector2(145, 190)
+rotation = -1.5708
+mode = 1
+
+[node name="Button3" parent="." instance=ExtResource("3_gr1bt")]
+position = Vector2(196, 199)
+mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(142, 319)
+texture = SubResource("CanvasTexture_ps8wu")
