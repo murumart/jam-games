@@ -2,8 +2,6 @@ extends PanelContainer
 
 signal demon_summoned(stats: DemonStats)
 
-var inventory := {}
-
 @onready var inventory_panel: Panel = %InventoryPanel
 @onready var drawing_tablet: DrawingTablet = %DrawingTablet
 @onready var summon_button: Button = %SummonButton
@@ -15,7 +13,7 @@ func _ready() -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	summon_button.disabled = drawing_tablet.blood.is_empty()
+	summon_button.disabled = not drawing_tablet.enabled
 
 
 func start() -> void:
@@ -29,18 +27,20 @@ func start() -> void:
 	get_tree().process_frame.connect(func(): DraggableItem.move_area = get_global_rect(), CONNECT_ONE_SHOT)
 	DraggableItem.move_area = get_global_rect()
 	drawing_tablet.enabled = true
+	drawing_tablet.blood_left = Inventory.get_blood()
 
 
 func close() -> void:
 	drawing_tablet.enabled = false
+	Inventory.remove_blood(drawing_tablet.blood.size())
 	drawing_tablet.clear_board()
 	create_tween().tween_property(self, "modulate:a", 0.0, 0.2).finished.connect(hide)
 	create_tween().tween_property(shadow, "modulate:a", 0.0, 0.2).finished.connect(shadow.hide)
 
 
 func _create_draggable_items() -> void:
-	for i in inventory.keys():
-		for j in inventory[i][&"amount"]:
+	for i in Inventory.available_items():
+		for j in Inventory.item_amount(i):
 			_create_item(i)
 
 
@@ -64,6 +64,8 @@ func _summon() -> void:
 
 	var target_stats := DemonStats.new()
 	var tablet_items := drawing_tablet.items
+	for x in tablet_items:
+		Inventory.remove_item(x)
 	var blood := drawing_tablet.blood
 	for i: DraggableItem in tablet_items:
 		match i.type:

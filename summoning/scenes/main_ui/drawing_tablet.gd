@@ -140,5 +140,6 @@ func pentagram_measurements() -> Dictionary:
 func clear_board() -> void:
 	for i in draw_into.values():
 		i.clear()
+	blood.clear()
 
 

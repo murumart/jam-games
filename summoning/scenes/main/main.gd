@@ -5,7 +5,6 @@ const DESIRED_ROOMS := 6
 
 var current_room := Vector2i()
 var rooms_map := {}
-var inventory := {}
 
 @onready var ui := $UI as UIType
 @onready var battle_manager := $BattleManager as BattleManager
@@ -14,8 +13,8 @@ var inventory := {}
 
 
 func _ready() -> void:
-	ui.inventory = inventory
 	gen_dungeon()
+	Inventory.add_blood(100)
 	battle_manager.battler_info_returned.connect(func(info: BattlerInfo, is_enemy: bool):
 		ui.add_battle_info(info, is_enemy)
 	)
@@ -106,5 +105,4 @@ func _entered_room() -> void:
 		)
 		return
 	ui_mov_display()
-
 

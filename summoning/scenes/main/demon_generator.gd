@@ -10,7 +10,10 @@ func generate(demon_stats: DemonStats) -> Battler:
 	var torso := BodypartMarker.new()
 	torso.type = &"torso"
 	battler.add_child(torso)
-	torso.finished.connect(battler.set_stats)
+	torso.finished.connect(func(stats: DemonStats):
+		stats.validate()
+		battler.set_stats(stats)
+	)
 	battler.ready.connect(func(): torso.start_generating(_parts, demon_stats))
 	battler.demon_name = _get_demon_name()
 	return battler

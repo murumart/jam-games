@@ -6,8 +6,6 @@ signal move_requested(dir: Vector2)
 signal move_finished
 signal cleanup_room_requested
 
-var inventory := {}
-
 @onready var fade: ColorRect = %Fade
 @onready var dungeon_tiles: TileMap = %DungeonTiles
 @onready var left_wizard_panel: PanelContainer = %LeftWizardPanel
@@ -20,7 +18,6 @@ var inventory := {}
 func _ready() -> void:
 	fade.color.a = 1.0
 	available_movement_display({})
-	summoning_circle_screen.inventory = inventory
 	movement_panel.move_requested.connect(func(dir: Vector2): move_requested.emit(dir))
 	movement_panel.summon_screen_requested.connect(func():
 		print("calling open drawing tablet")

@@ -36,11 +36,13 @@ func start_battle() -> void:
 	enemy = enemy_spot.generate(DemonStats.new())
 	enemy.battler_info_returned.connect(func(a): battler_info_returned.emit(a, true))
 	enemy_spot.add_child(enemy)
+	enemy.message_emitted.connect(ui.message)
 
 	ui.summoning_circle_screen.demon_summoned.connect(func(stats: DemonStats):
 		player = player_spot.generate(stats)
 		player.battler_info_returned.connect(func(a): battler_info_returned.emit(a, false))
 		player_spot.add_child(player)
+		player.message_emitted.connect(ui.message)
 
 		var fast := _faster()
 		ui.message(str(fast.demon_name, " is faster, attacks first!"))
@@ -88,6 +90,7 @@ func _faster() -> Battler:
 
 func _turn() -> void:
 	# other attacked during last turn
+	print(current, " ", current.health, " ", current.demon_stats)
 	if current.dead:
 		_battle_ended()
 		return
@@ -103,8 +106,10 @@ func _battle_ended() -> void:
 		tw.tween_property(player, "scale", Vector2(2.0, 0.5), 1.0)
 		tw.parallel().tween_property(player, "modulate", Color(1, 0, 0.5, 0.0), 0.9)
 		await create_tween().tween_interval(2.0).finished
+		Inventory.add_item(Inventory.Item.CANDLE)
+		Inventory.add_blood(75)
 		reset()
 		battle_ended.emit()
-		return
-	player_lost.emit()
+	else:
+		player_lost.emit()
 
