@@ -11,6 +11,7 @@ signal fade_finished
 var gate_id: StringName
 var canvas_layer := CanvasLayer.new()
 var screen_fade_order := Node2D.new()
+var _transitioning := false
 
 
 func _ready() -> void:
@@ -43,6 +44,9 @@ func get_current_scene() -> Node:
 
 # change level with fancy fade
 func level_transition(path: String, op := {}) -> void:
+	if _transitioning:
+		return
+	_transitioning = true
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	var fadetime: float = op.get("fade_time", 0.4)
 	fade_screen(
@@ -54,6 +58,7 @@ func level_transition(path: String, op := {}) -> void:
 	print("changing scene")
 	change_scene_to(path, op)
 	await scene_changed
+	_transitioning = false
 	if not op.get("abrupt_end", false):
 		fade_screen(
 			op.get("end_color", Color.BLACK),

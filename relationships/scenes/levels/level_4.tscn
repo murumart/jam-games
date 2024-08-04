@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpi0tegs34vte"]
+[gd_scene load_steps=15 format=3 uid="uid://bpi0tegs34vte"]
 
 [ext_resource type="TileSet" uid="uid://dvglcpxijlp37" path="res://scenes/tileset/tileset_1.tres" id="1_jyfpn"]
 [ext_resource type="PackedScene" uid="uid://ct44br4ycnymj" path="res://scenes/player/copy_player.tscn" id="2_jdy0e"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="7_xrmmm"]
 [ext_resource type="Script" path="res://types/bool_checker.gd" id="8_pabkb"]
 [ext_resource type="Script" path="res://types/condition.gd" id="9_l5xes"]
+[ext_resource type="PackedScene" uid="uid://ihxmunae8rg0" path="res://scenes/levels/background.tscn" id="10_npja0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgmco"]
 size = Vector2(788, 36)
@@ -37,7 +38,6 @@ any_true_value = [true]
 position = Vector2(188, 141)
 top_tube_length = 200
 bottom_tube_length = 220
-open = false
 player = NodePath("../CopyPlayer")
 next_scene = "res://scenes/levels/level_5.tscn"
 
@@ -102,6 +102,8 @@ conditions = Array[ExtResource("9_l5xes")]([SubResource("Resource_23ko8"), SubRe
 [node name="BoolActivator" parent="." node_paths=PackedStringArray("activator") instance=ExtResource("7_xrmmm")]
 activator = NodePath("../BoolChecker")
 can_deactivate = true
+
+[node name="Background" parent="." instance=ExtResource("10_npja0")]
 
 [connection signal="pressed" from="Button" to="ActivationPath" method="activate"]
 [connection signal="pressed" from="Button2" to="ActivationPath2" method="activate"]

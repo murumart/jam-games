@@ -1,0 +1,182 @@
+[gd_scene load_steps=18 format=3 uid="uid://dr7007vxqx6in"]
+
+[ext_resource type="PackedScene" uid="uid://dec7g2diqnceq" path="res://scenes/logic/tube.tscn" id="1_dc5fp"]
+[ext_resource type="TileSet" uid="uid://dvglcpxijlp37" path="res://scenes/tileset/tileset_1.tres" id="1_hf26h"]
+[ext_resource type="Script" path="res://scenes/logic/death_area.gd" id="2_hxw3h"]
+[ext_resource type="PackedScene" uid="uid://2u1va1tyj2cg" path="res://scenes/player/player.tscn" id="3_vytxt"]
+[ext_resource type="PackedScene" uid="uid://ct44br4ycnymj" path="res://scenes/player/copy_player.tscn" id="4_xgmas"]
+[ext_resource type="PackedScene" uid="uid://bqn0bm5d0huao" path="res://scenes/buttons/button.tscn" id="5_wmd6i"]
+[ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="7_musgo"]
+[ext_resource type="Script" path="res://types/bool_checker.gd" id="8_pb00y"]
+[ext_resource type="Script" path="res://types/condition.gd" id="9_ll64o"]
+[ext_resource type="Texture2D" uid="uid://d0ljqgpt2t1vy" path="res://scenes/tileset/bulb_light.tres" id="10_33ngd"]
+[ext_resource type="PackedScene" uid="uid://ihxmunae8rg0" path="res://scenes/levels/background.tscn" id="11_krf64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8tvl"]
+size = Vector2(20000, 20)
+
+[sub_resource type="GDScript" id="GDScript_5f2ff"]
+resource_name = "cam_follow"
+script/source = "extends Camera2D
+
+@export var target_1: Node2D
+@export var target_2: Node2D
+
+
+func _process(delta: float) -> void:
+	var t1 := target_1.global_position if is_instance_valid(target_1) else Vector2.ZERO
+	var t2 := target_2.global_position if is_instance_valid(target_2) else Vector2.ZERO
+	global_position = (t1 + t2) * 0.5
+"
+
+[sub_resource type="Resource" id="Resource_dyd3w"]
+script = ExtResource("9_ll64o")
+node = NodePath("../../ActivationPath")
+property_path = &"_is_activated"
+any_true_value = [true]
+
+[sub_resource type="Resource" id="Resource_uqdg3"]
+script = ExtResource("9_ll64o")
+node = NodePath("../../ActivationPath2")
+property_path = &"_is_activated"
+any_true_value = [true]
+
+[sub_resource type="Resource" id="Resource_likkn"]
+script = ExtResource("9_ll64o")
+node = NodePath("../../ActivationPath3")
+property_path = &"_is_activated"
+any_true_value = [true]
+
+[sub_resource type="Resource" id="Resource_lhdm2"]
+script = ExtResource("9_ll64o")
+node = NodePath("../../ActivationPath4")
+property_path = &"_is_activated"
+any_true_value = [true]
+
+[node name="Level6" type="Node2D"]
+
+[node name="Tube" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_dc5fp")]
+position = Vector2(187, 122)
+top_tube_length = 200
+bottom_tube_length = 220
+player = NodePath("../Node2D/Player")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_hf26h")
+format = 2
+layer_0/tile_data = PackedInt32Array(524290, 524289, 1, 524291, 589825, 2, 524292, 589825, 2, 458756, 655361, 0, 458757, 655361, 0, 458758, 655361, 0, 458759, 720897, 0, 524295, 720897, 2, 524294, 589825, 2, 524293, 589825, 2, 589831, 720897, 2, 589830, 589825, 2, 655366, 589825, 3, 655365, 589825, 3, 655364, 589825, 3, 655363, 589825, 3, 655362, 524289, 3, 589826, 524289, 1, 589827, 589825, 2, 589828, 589825, 2, 589829, 589825, 2, 655367, 458753, 2, 655372, 1, 1, 589839, 196609, 0, 655375, 65537, 2, 655376, 131073, 3, 655377, 131073, 3, 655378, 131073, 3, 655379, 196609, 0, 720903, 1, 1, 786439, 1, 1, 851975, 1, 2, 720908, 1, 1, 786444, 1, 1, 851980, 1, 2, 720915, 1, 1, 786451, 1, 1, 851987, 1, 2, 196610, 65537, 3, 196611, 131073, 3, 196612, 196609, 3, 196627, 196609, 3, 196626, 131073, 3, 196625, 131073, 3, 196624, 131073, 3, 196623, 65537, 3, 6, 131073, 3, 7, 131073, 3, 8, 131073, 3, 16, 524289, 3, -65520, 524289, 1, 5, 65537, 3, 3, 720897, 3, -65533, 720897, 2, -131069, 720897, 2, -196605, 720897, 2, -262141, 720897, 2, 262143, 720897, 3, 196607, 720897, 2, 131071, 720897, 2, 65535, 393217, 2, 589836, 65537, 0, 589837, 131073, 3, 589838, 131073, 3, 2, 589825, 3, 1, 589825, 3, 0, 589825, 3, 17, 589825, 3, 18, 720897, 3, -65518, 720897, 2, -65519, 589825, 2, -131055, 589825, 2, -196591, 589825, 2, -262127, 589825, 2, -327663, 589825, 2, -327664, 524289, 1, -262128, 524289, 1, -196592, 524289, 1, -131056, 524289, 1, -131054, 720897, 2, -196590, 720897, 2, -262126, 720897, 2, -327662, 720897, 2, 9, 196609, 2, -65527, 1, 1, -131063, 1, 1, -196599, 1, 1, -327677, 720897, 2, -393213, 393217, 2, -393212, 589825, 3, -393211, 589825, 3, -393210, 589825, 3, -393209, 589825, 3, -393208, 589825, 3, -327671, 1, 1, -262135, 1, 1, -393207, 458753, 2, -458749, 589825, 2, -458748, 589825, 2, -458747, 589825, 2, -458746, 589825, 2, -458745, 589825, 2, -458744, 589825, 2, -458743, 720897, 2, -524279, 720897, 2, -524280, 589825, 2, -524281, 589825, 2, -524282, 589825, 2, -524283, 589825, 2, -524284, 589825, 2, -524285, 589825, 2, -589821, 327681, 1, -589820, 589825, 2, -589819, 589825, 2, -589818, 589825, 2, -589817, 589825, 2, -589816, 589825, 2, -655352, 589825, 2, -655351, 720897, 2, -655353, 589825, 2, -655354, 589825, 2, -655355, 589825, 2, -655356, 589825, 2, -655357, 524289, 1, -720893, 524289, 0, -720892, 655361, 0, -720891, 655361, 0, -720890, 655361, 0, -720889, 655361, 0, -720888, 655361, 0, -720887, 720897, 0, -589815, 720897, 2, -393200, 524289, 1, -393199, 589825, 2, -393198, 720897, 2, -458734, 720897, 2, -458735, 589825, 2, -524271, 589825, 2, -524272, 524289, 1, -458736, 524289, 1, -524270, 720897, 2, -655344, 524289, 1, -720880, 524289, 0, -786415, 1, 0, -720879, 589825, 0, -655342, 720897, 2, -655343, 589825, 2, -589807, 589825, 2, -589808, 524289, 1, -720878, 720897, 0, -589806, 720897, 2, 65534, 327681, 1, 131070, 589825, 2, 196606, 589825, 2, 262142, 589825, 3, 262141, 524289, 3, 196605, 524289, 1, 131069, 524289, 1, 65533, 524289, 0, -65534, 589825, 2, -131070, 589825, 2, -196606, 589825, 2, -262142, 589825, 2, -327678, 589825, 2, -327679, 589825, 2, -262143, 589825, 2, -196607, 589825, 2, -131071, 589825, 2, -65535, 589825, 2, -65536, 589825, 2, -131072, 589825, 2, -196608, 589825, 2, -262144, 589825, 2, -131073, 589825, 2, -65537, 589825, 2, -1, 589825, 2, -2, 524289, 1, -65538, 524289, 1, -131074, 524289, 1, -196610, 524289, 1, -262146, 524289, 1, -262145, 589825, 2, -327680, 589825, 2, -393215, 589825, 2, -393216, 589825, 2, -327681, 589825, 2, -196609, 589825, 2, -393214, 589825, 2, -327682, 524289, 1, -393218, 524289, 1, -393217, 589825, 2, -458752, 589825, 2, -458751, 589825, 2, -458750, 589825, 2, -524286, 589825, 2, -524287, 589825, 2, -589823, 655361, 0, -589824, 655361, 0, -524288, 589825, 2, -458753, 589825, 2, -458754, 524289, 1, -524290, 524289, 0, -524289, 655361, 0, -589822, 655361, 0, 458755, 655361, 0, 458754, 524289, 0)
+
+[node name="DeathArea" type="Area2D" parent="."]
+position = Vector2(204, 332)
+script = ExtResource("2_hxw3h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+shape = SubResource("RectangleShape2D_j8tvl")
+debug_color = Color(0.984627, 0, 0.341734, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target_1", "target_2")]
+position = Vector2(116, -9)
+limit_bottom = 250
+position_smoothing_enabled = true
+script = SubResource("GDScript_5f2ff")
+target_1 = NodePath("../Node2D/Player")
+target_2 = NodePath("../Node2D2/CopyPlayer")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(131, -1)
+
+[node name="Player" parent="Node2D" instance=ExtResource("3_vytxt")]
+position = Vector2(-8, -8)
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(260, 0)
+
+[node name="CopyPlayer" parent="Node2D2" node_paths=PackedStringArray("copy_from") instance=ExtResource("4_xgmas")]
+position = Vector2(9, -9)
+copy_from = NodePath("../../Node2D/Player")
+copy_properties = Array[StringName]([&"position", &"velocity"])
+flip_numerics = Array[StringName]([&"position:x"])
+
+[node name="Button" parent="." instance=ExtResource("5_wmd6i")]
+position = Vector2(165, 0)
+
+[node name="Button2" parent="." instance=ExtResource("5_wmd6i")]
+position = Vector2(320, -8)
+rotation = -1.5708
+
+[node name="Button3" parent="." instance=ExtResource("5_wmd6i")]
+position = Vector2(370, 20)
+rotation = 3.14159
+
+[node name="Button4" parent="." instance=ExtResource("5_wmd6i")]
+position = Vector2(89, 140)
+
+[node name="ActivationPath" parent="." instance=ExtResource("7_musgo")]
+modulate = Color(1, 0.592157, 0.341176, 1)
+points = PackedVector2Array(192, 26, 318.373, 26, 324, 26, 324, 20.9281, 324, -7)
+
+[node name="ActivationPath2" parent="." instance=ExtResource("7_musgo")]
+modulate = Color(1, 0.592157, 0.341176, 1)
+points = PackedVector2Array(369, 11, 331, 11)
+
+[node name="ActivationPath3" parent="." instance=ExtResource("7_musgo")]
+modulate = Color(0.364706, 0.717647, 1, 1)
+points = PackedVector2Array(88, 148, 185, 148)
+
+[node name="ActivationPath4" parent="." instance=ExtResource("7_musgo")]
+modulate = Color(0.364706, 0.717647, 1, 1)
+position = Vector2(77, -144)
+points = PackedVector2Array(88, 148, 110.326, 148, 115, 148, 115, 167)
+
+[node name="FinalActivator" parent="." node_paths=PackedStringArray("activator") instance=ExtResource("7_musgo")]
+points = PackedVector2Array(187, 318, 186, 139)
+activator = NodePath("BoolChecker")
+
+[node name="BoolChecker" type="Node" parent="FinalActivator"]
+script = ExtResource("8_pb00y")
+conditions = Array[ExtResource("9_ll64o")]([SubResource("Resource_dyd3w"), SubResource("Resource_uqdg3"), SubResource("Resource_likkn"), SubResource("Resource_lhdm2")])
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.259412, 0.385396, 0.261617, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(210, 17)
+scale = Vector2(2.88426, 9.98072)
+color = Color(1, 1, 0, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("10_33ngd")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(312, 17)
+scale = Vector2(2.88426, 9.98072)
+color = Color(1, 1, 0, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("10_33ngd")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(398, 17)
+scale = Vector2(2.88426, 9.98072)
+color = Color(1, 1, 0, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("10_33ngd")
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(432, -64)
+scale = Vector2(-7.25475, 14.9837)
+color = Color(0, 1, 1, 1)
+energy = 8.88
+blend_mode = 2
+shadow_item_cull_mask = 2
+texture = ExtResource("10_33ngd")
+
+[node name="Background" parent="." instance=ExtResource("11_krf64")]
+
+[connection signal="pressed" from="Button" to="ActivationPath4" method="activate"]
+[connection signal="pressed" from="Button2" to="ActivationPath" method="activate"]
+[connection signal="pressed" from="Button3" to="ActivationPath2" method="activate"]
+[connection signal="pressed" from="Button4" to="ActivationPath3" method="activate"]
+[connection signal="pressed" from="Button4" to="FinalActivator" method="test"]
+[connection signal="activated" from="FinalActivator" to="Tube" method="open_up"]

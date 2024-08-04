@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxyfwc3aetvmo"]
+[gd_scene load_steps=10 format=3 uid="uid://cxyfwc3aetvmo"]
 
 [ext_resource type="PackedScene" uid="uid://dec7g2diqnceq" path="res://scenes/logic/tube.tscn" id="1_k1dqf"]
 [ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="1_ovwq0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqn0bm5d0huao" path="res://scenes/buttons/button.tscn" id="4_l7ej0"]
 [ext_resource type="Texture2D" uid="uid://d0ljqgpt2t1vy" path="res://scenes/tileset/bulb_light.tres" id="6_vevew"]
 [ext_resource type="Script" path="res://scenes/logic/death_area.gd" id="7_upry5"]
+[ext_resource type="PackedScene" uid="uid://ihxmunae8rg0" path="res://scenes/levels/background.tscn" id="8_bb2ob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lthae"]
 size = Vector2(905, 68)
@@ -20,7 +21,6 @@ points = PackedVector2Array(2, -4, 2, -24, 8, -31, 33, -31)
 [node name="Tube" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_k1dqf")]
 position = Vector2(301, 118)
 top_tube_length = 161
-open = false
 player = NodePath("../Player")
 next_scene = "res://scenes/levels/level_3.tscn"
 
@@ -55,6 +55,8 @@ debug_color = Color(0.860264, 0.000671713, 0.875021, 0.42)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 rotation = -3.27515
 color = Color(1, 0.2, 0.533333, 1)
+
+[node name="Background" parent="." instance=ExtResource("8_bb2ob")]
 
 [connection signal="activated" from="ActivationPath" to="Tube" method="open_up"]
 [connection signal="pressed" from="Button" to="ActivationPath" method="activate"]

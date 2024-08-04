@@ -40,7 +40,7 @@ func close_down() -> void:
 	$FinishArea.body_entered.disconnect(finish)
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property($Cover, "scale:y", 1.0, 1.0).from(0.0)
-	tw.parallel().tween_property($Cover, "position:y", 0.0, 1.0).from(9.0)
+	tw.parallel().tween_property($Cover, "position:y", 0.0, 1.0).from(-9.0)
 
 
 func finish() -> void:
@@ -52,7 +52,8 @@ func finish() -> void:
 	tw.parallel().tween_property(player, "rotation", TAU * 3, 1.1)
 	tw.tween_property(player, "scale", Vector2.ZERO, 0.2)
 	tw.finished.connect(func():
-		player.queue_free()
+		if is_instance_valid(player):
+			player.queue_free()
 		LTS.level_transition(next_scene)
 	)
 	

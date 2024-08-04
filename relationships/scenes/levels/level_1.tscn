@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://3uoq3ssaqp38"]
+[gd_scene load_steps=13 format=3 uid="uid://3uoq3ssaqp38"]
 
 [ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="1_x175v"]
 [ext_resource type="TileSet" uid="uid://dvglcpxijlp37" path="res://scenes/tileset/tileset_1.tres" id="1_yc8uq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://types/bool_checker.gd" id="6_ahukb"]
 [ext_resource type="Script" path="res://types/condition.gd" id="7_j1rer"]
 [ext_resource type="PackedScene" uid="uid://dec7g2diqnceq" path="res://scenes/logic/tube.tscn" id="9_dkn4i"]
+[ext_resource type="PackedScene" uid="uid://ihxmunae8rg0" path="res://scenes/levels/background.tscn" id="10_ifueo"]
 
 [sub_resource type="GDScript" id="GDScript_6ps71"]
 resource_name = "level_1"
@@ -41,13 +42,12 @@ shadow_item_cull_mask = 2
 [node name="ActivationPath" parent="." node_paths=PackedStringArray("activator") instance=ExtResource("1_x175v")]
 modulate = Color(0.490196, 0.890196, 0.552941, 1)
 position = Vector2(335, 214)
-points = PackedVector2Array(-2, -17, -122, -17, -129, -23, -129, -73, -134, -79, -192, -79)
+points = PackedVector2Array(-2, -17, -123.689, -17, -131, -17, -131, -24.0235, -131, -71.4103, -131, -78, -137.349, -78.1041, -192, -78)
 activator = NodePath("../BoolChecker")
 
 [node name="Tube" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_dkn4i")]
 position = Vector2(128, 134)
 top_tube_length = 101
-open = false
 player = NodePath("../Player")
 next_scene = "res://scenes/levels/level_2.tscn"
 
@@ -78,6 +78,8 @@ position = Vector2(335, 200)
 [node name="BoolChecker" type="Node" parent="."]
 script = ExtResource("6_ahukb")
 conditions = Array[ExtResource("7_j1rer")]([SubResource("Resource_b1d1n")])
+
+[node name="Background" parent="." instance=ExtResource("10_ifueo")]
 
 [connection signal="activated" from="ActivationPath" to="Tube" method="open_up"]
 [connection signal="pressed" from="Button" to="ActivationPath" method="test"]

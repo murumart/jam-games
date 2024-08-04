@@ -12,11 +12,14 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var state := States.FALL
 var _direction := 0.0
 
+@export var sprite: Sprite2D
+
 
 func _physics_process(delta: float) -> void:
 	if state == States.FREEZE:
 		return
 	
+	_sprite_animation()
 	if state == States.FALL:
 		velocity.y += gravity * delta
 	elif state == States.JUMP:
@@ -36,12 +39,13 @@ func _physics_process(delta: float) -> void:
 		if not collider is CharacterBody2D:
 			continue
 		var normal := collision.get_normal()
-		collider.velocity -= normal * SPEED
+		collider.velocity -= normal * SPEED * maxf(velocity.length() * 0.005, 0.5)
 	
 	if is_on_floor():
 		state = States.FLOOR
 	else:
 		state = States.FALL
+	_prev_velocity = velocity
 
 
 func _handle_input() -> void:
@@ -56,3 +60,11 @@ func _start_jump() -> void:
 func _end_jump() -> void:
 	velocity.y = maxf(0.0, velocity.y)
 	state = States.FALL
+
+
+var _prev_velocity := Vector2()
+func _sprite_animation() -> void:
+	if not is_instance_valid(sprite):
+		return
+	var change := _prev_velocity - velocity
+	sprite.scale.x = remap(change.y, 0, 2000, 1.0, 0.55)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tyg52dyidare"]
+[gd_scene load_steps=9 format=3 uid="uid://tyg52dyidare"]
 
 [ext_resource type="TileSet" uid="uid://dvglcpxijlp37" path="res://scenes/tileset/tileset_1.tres" id="1_123r5"]
 [ext_resource type="PackedScene" uid="uid://dec7g2diqnceq" path="res://scenes/logic/tube.tscn" id="1_vfdcp"]
@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dq6rvo38x2l1j" path="res://scenes/logic/activation_path.tscn" id="3_cact0"]
 [ext_resource type="PackedScene" uid="uid://bqn0bm5d0huao" path="res://scenes/buttons/button.tscn" id="4_4w1ov"]
 [ext_resource type="Texture2D" uid="uid://d0ljqgpt2t1vy" path="res://scenes/tileset/bulb_light.tres" id="7_1x60t"]
+[ext_resource type="PackedScene" uid="uid://ihxmunae8rg0" path="res://scenes/levels/background.tscn" id="8_um10n"]
 
 [node name="Level3" type="Node2D"]
 
 [node name="Tube" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_vfdcp")]
 position = Vector2(298, 163)
 top_tube_length = 26
-open = false
 player = NodePath("../Player")
 next_scene = "res://scenes/levels/level_4.tscn"
 
@@ -60,6 +60,8 @@ rotation = -1.29047
 scale = Vector2(11.8287, -1.77593)
 color = Color(0.415686, 0.717647, 0, 1)
 texture = ExtResource("7_1x60t")
+
+[node name="Background" parent="." instance=ExtResource("8_um10n")]
 
 [connection signal="activated" from="ActivationPath" to="Tube" method="open_up"]
 [connection signal="deactivated" from="ActivationPath" to="Tube" method="close_down"]
