@@ -1,21 +1,21 @@
 ## Todo list for Jam Game
 
 ### Mechanics
-- [ ] interaction system
-  - [ ] interacting area on player
-  - [ ] interactable area
-- [ ] dialogue system
-  - [ ] dialogue class
-  - [ ] dialogue line class
-  - [ ] dialogue builder class
+- [X] interaction system
+  - [X] interacting area on player
+  - [X] interactable area
+- [X] dialogue system
+  - [X] dialogue class
+  - [X] dialogue line class
+  - [X] dialogue builder class
 
 ### Graphical
 - [X] bubble particles that float up
-- [ ] screen fade on scene change
-- [ ] beached boat that the fish came out of
+- [X] screen fade on scene change
+- [X] beached boat that the fish came out of
 - [ ] whale cave
   - [ ] entrance
-  - [ ] inside tileset
+  - [X] inside tileset
   - [ ] decorations (shelves, bookshelves, )
 
 ### Narrative
@@ -23,7 +23,8 @@
   - [ ] appear at first collection
 
 ### Auditory
-- [ ] approach whale cave music (bubbly watery)
+- [X] approach whale cave music (bubbly watery)
+- [X] preliminary fight music
 - [ ] whale boss music
 - [ ] collection music
 - [ ] collectible sound effect (shiny angelic)

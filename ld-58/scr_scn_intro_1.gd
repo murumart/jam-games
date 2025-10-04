@@ -2,4 +2,4 @@ extends Node2D
 
 
 func _ready() -> void:
-	pass
+	Manager.play_music(preload("res://mus_whale_amb.ogg"))

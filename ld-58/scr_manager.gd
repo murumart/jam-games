@@ -1,6 +1,7 @@
 extends Node
 
 var gate_id: StringName
+var music_player: AudioStreamPlayer
 
 var _transitioning := false
 var _canvas_layer: CanvasLayer
@@ -50,3 +51,20 @@ func level_transition(path: String, gate_id_: StringName) -> void:
 	if is_instance_valid(Player.extant):
 		Player.extant.release(Player.Capturer.LEVEL_TRANSITION)
 	_transitioning = false
+
+
+func play_music(stream: AudioStream, transition_time: float = 1.0) -> void:
+	if is_instance_valid(music_player):
+		if music_player.stream == stream:
+			return
+		var mus := music_player
+		var tw_out := create_tween()
+		tw_out.tween_property(mus, ^"volume_linear", 0.025, transition_time)
+		tw_out.tween_callback(mus.queue_free)
+	music_player = AudioStreamPlayer.new()
+	add_child(music_player)
+	music_player.stream = stream
+	music_player.volume_linear = 0.025
+	music_player.play()
+	var tw_in := create_tween()
+	tw_in.tween_property(music_player, ^"volume_linear", 1.0, transition_time)
