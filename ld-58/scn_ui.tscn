@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://3kmg480qsag7"]
+
+[node name="UI" type="Control"]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 120.0

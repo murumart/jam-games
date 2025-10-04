@@ -10,7 +10,7 @@
   - [ ] dialogue builder class
 
 ### Graphical
-- [ ] bubble particles that float up
+- [X] bubble particles that float up
 - [ ] screen fade on scene change
 - [ ] beached boat that the fish came out of
 - [ ] whale cave

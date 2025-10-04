@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du6vowegd2ifc"
-path="res://.godot/imported/spr_bubble.png-da3bac9d9efea781eb8da8c15ced78e3.ctex"
+uid="uid://bff3bfy8gtarv"
+path="res://.godot/imported/spr_vfx_fishes.png-e11ce887f2ef04dca7e3b5ee31d8d6c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spr_bubble.png"
-dest_files=["res://.godot/imported/spr_bubble.png-da3bac9d9efea781eb8da8c15ced78e3.ctex"]
+source_file="res://spr_vfx_fishes.png"
+dest_files=["res://.godot/imported/spr_vfx_fishes.png-e11ce887f2ef04dca7e3b5ee31d8d6c4.ctex"]
 
 [params]
 
