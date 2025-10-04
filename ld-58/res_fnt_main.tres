@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://dfwkw2k0jbtu8"]
+
+[ext_resource type="FontFile" uid="uid://dtja56o3dirxa" path="res://fnt_jupiteroid.ttf" id="1_k6ubd"]
+
+[resource]
+base_font = ExtResource("1_k6ubd")
+variation_embolden = 0.5
+spacing_glyph = 1

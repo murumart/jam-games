@@ -6,6 +6,7 @@ signal _skip_pressed
 @export var label: RichTextLabel
 @export var talk_sound: AudioStreamPlayer
 @export var player: Player
+@export var hiding_parent: CanvasItem
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -19,6 +20,8 @@ func speak(dial: Array[DialogueLine]) -> void:
 	var skip := [false]
 	if is_instance_valid(player):
 		player.capture(Player.Capturer.DIALOGUE)
+	if not label.is_visible_in_tree() and is_instance_valid(hiding_parent):
+		hiding_parent.show()
 	for line in dial:
 		skip[0] = false
 		_skip_pressed.connect(func() -> void: skip[0] = true, CONNECT_ONE_SHOT)
@@ -28,7 +31,7 @@ func speak(dial: Array[DialogueLine]) -> void:
 
 		while label.visible_ratio < 1.0:
 			var c := mytext[label.visible_characters - 1]
-			var ispunct := c in " .,;!?=/"
+			var ispunct := c in ".,;!?=/"
 			var issilent := (not is_instance_valid(talk_sound)
 				or ispunct
 				or c in " ()[]+-*")
@@ -43,4 +46,6 @@ func speak(dial: Array[DialogueLine]) -> void:
 
 	label.visible_ratio = 0.0
 	if is_instance_valid(player):
-		player.release(Player.Capturer.DIALOGUE)
+		player.release.call_deferred(Player.Capturer.DIALOGUE)
+	if is_instance_valid(hiding_parent):
+		hiding_parent.hide()

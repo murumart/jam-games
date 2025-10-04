@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bk114n6bwlk14"]
+[gd_scene load_steps=17 format=3 uid="uid://bk114n6bwlk14"]
 
 [ext_resource type="Script" uid="uid://c7gq15tnxej1k" path="res://scr_scn_player.gd" id="1_xp2ti"]
 [ext_resource type="Texture2D" uid="uid://bwtx0lstdwyh5" path="res://spr_fish_walk_back.png" id="2_rh6os"]
@@ -98,6 +98,9 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rh6os"]
+size = Vector2(8, 8)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_xp2ti")
@@ -109,4 +112,14 @@ shape = SubResource("RectangleShape2D_xp2ti")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_kk15b")
 animation = &"walk_side"
-frame_progress = 0.78430283
+frame_progress = 0.0987957
+
+[node name="InspectTriggerArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="InspectCollider" type="CollisionShape2D" parent="InspectTriggerArea"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_rh6os")

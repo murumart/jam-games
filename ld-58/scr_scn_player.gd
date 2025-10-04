@@ -11,6 +11,7 @@ static var _last_animation: StringName
 static var _last_flip: bool
 
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var inspect_trigger_area: Area2D = $InspectTriggerArea
 
 @export var speed := 60.0
 
@@ -38,6 +39,7 @@ func _exit_tree() -> void:
 func _physics_process(_delta: float) -> void:
 	var input := Input.get_vector(&"walk_left", &"walk_right", &"walk_up", &"walk_down")
 	_process_movement(input)
+	_process_inspecting(input)
 	_process_animation(input)
 
 
@@ -47,6 +49,19 @@ func _process_movement(input: Vector2) -> void:
 	else:
 		velocity = input * speed
 		move_and_slide()
+
+
+func _process_inspecting(input: Vector2) -> void:
+	if inspect_trigger_area.monitorable:
+		inspect_trigger_area.monitorable = false
+	if _capturers:
+		return
+	if Input.is_action_just_pressed(&"ui_accept"):
+		inspect_trigger_area.monitorable = true
+
+	if not input:
+		return
+	inspect_trigger_area.rotation = input.angle() + PI * 0.5
 
 
 func _process_animation(input: Vector2) -> void:
