@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cqigqujnfg4jt"]
+[gd_scene load_steps=23 format=4 uid="uid://cqigqujnfg4jt"]
 
 [ext_resource type="Script" uid="uid://r1f44wph7ox4" path="res://scr_scn_intro_1.gd" id="1_v2ghr"]
 [ext_resource type="PackedScene" uid="uid://bk114n6bwlk14" path="res://scn_player.tscn" id="2_bglh2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bchkkjyt7sypy" path="res://scn_vfx_fishes.tscn" id="4_fk254"]
 [ext_resource type="PackedScene" uid="uid://dguqw8wa4g2km" path="res://scn_ui_dialogue_box.tscn" id="4_v2ghr"]
 [ext_resource type="Material" uid="uid://co6kjr3jwgglu" path="res://res_mat_add.tres" id="5_vmb15"]
+[ext_resource type="PackedScene" uid="uid://dd7xj37uy6r3j" path="res://scn_ui_battle.tscn" id="6_go1nm"]
 [ext_resource type="Script" uid="uid://c7iown6kx8pxu" path="res://scr_dialogue_box.gd" id="7_gipnu"]
 [ext_resource type="Script" uid="uid://c5jl67ysb68xo" path="res://scr_travel_area.gd" id="10_dljuk"]
 [ext_resource type="Texture2D" uid="uid://blkfewu0q2yeg" path="res://spr_boat_broken.png" id="11_ashx2"]
@@ -86,6 +87,12 @@ label = NodePath("../DialogueBox/MarginContainer/RichTextLabel")
 player = NodePath("../../..")
 hiding_parent = NodePath("../DialogueBox")
 metadata/_custom_type_script = "uid://c7iown6kx8pxu"
+
+[node name="Battle" parent="Player/Camera2D" instance=ExtResource("6_go1nm")]
+offset_left = -68.0
+offset_top = -26.0
+offset_right = 68.0
+offset_bottom = 61.0
 
 [node name="Bg" type="TileMapLayer" parent="."]
 z_index = -1

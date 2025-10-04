@@ -1,0 +1,170 @@
+[gd_scene load_steps=11 format=3 uid="uid://dd7xj37uy6r3j"]
+
+[ext_resource type="Theme" uid="uid://c14kllfa1vr87" path="res://res_thm_main.tres" id="1_bxjt3"]
+[ext_resource type="Script" uid="uid://j3qyuymnu3as" path="res://scr_scn_ui_battle.gd" id="1_ghmul"]
+[ext_resource type="PackedScene" uid="uid://k1sxya4o3m1h" path="res://scn_ui_battle_actor_info.tscn" id="4_1p34m"]
+[ext_resource type="AudioStream" uid="uid://bho37lwgowgyu" path="res://snd_deal_damage.wav" id="4_as3u5"]
+[ext_resource type="AudioStream" uid="uid://5kfpv1tma2op" path="res://snd_receive_damage.wav" id="5_xn80h"]
+[ext_resource type="AudioStream" uid="uid://c0r61ffjbbiwj" path="res://snd_deal_crit.wav" id="6_nomta"]
+[ext_resource type="AudioStream" uid="uid://d14tw7sxjknhy" path="res://snd_receive_crit.wav" id="7_i51oc"]
+[ext_resource type="AudioStream" uid="uid://dnua581a5b8k7" path="res://snd_use_item.wav" id="8_vexfx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1p34m"]
+font_size = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iq5i1"]
+
+[node name="Battle" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bxjt3")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("1_ghmul")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="EnemiesBaseline" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12.725)
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ActorInfoDisplay" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="BattleActorInfo" parent="VBoxContainer/VBoxContainer/ActorInfoDisplay" instance=ExtResource("4_1p34m")]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="Buttons" type="HFlowContainer" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="AttackButton" type="Button" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+text = "Attack"
+
+[node name="ItemButton" type="Button" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+text = "Item"
+
+[node name="SpecialButton" type="Button" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+text = "Third Option"
+
+[node name="LogText" type="RichTextLabel" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+scroll_active = false
+scroll_following = true
+
+[node name="AttackOptions" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="EnemyChoiceList" type="ItemList" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer/AttackOptions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+mouse_filter = 2
+item_count = 2
+item_0/text = "aa"
+item_1/text = "bb"
+
+[node name="AttackModeChoiceList" type="ItemList" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer/AttackOptions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+mouse_filter = 2
+item_count = 2
+item_0/text = "aa"
+item_1/text = "bb"
+
+[node name="TargetDisplay" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer/AttackOptions" instance=ExtResource("4_1p34m")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer/AttackOptions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "action description"
+label_settings = SubResource("LabelSettings_1p34m")
+autowrap_mode = 2
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/VBoxContainer/Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 1
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iq5i1")
+item_count = 4
+max_columns = 4
+item_0/text = "item x"
+item_1/text = "item y"
+item_2/text = "item z"
+item_3/text = "item w"
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="DealDamage" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_as3u5")
+volume_db = 7.0
+
+[node name="ReceiveDamage" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_xn80h")
+volume_db = 7.0
+
+[node name="DealCrit" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_nomta")
+
+[node name="ReceiveCrit" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_i51oc")
+
+[node name="UseItem" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_vexfx")
+volume_db = 2.0

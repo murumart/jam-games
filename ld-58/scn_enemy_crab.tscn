@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://crl5g0l3mfpx1"]
+
+[ext_resource type="Script" uid="uid://fye53tti2pfp" path="res://scr_battle_actor.gd" id="1_vr5b0"]
+[ext_resource type="Texture2D" uid="uid://cslawv5xu0gi4" path="res://spr_enemy_fodder.png" id="2_k8ygv"]
+
+[node name="Crab" type="Node2D"]
+script = ExtResource("1_vr5b0")
+actor_name = "Scary Crab"
+attack_stat = 3
+defense_stat = 3
+metadata/_custom_type_script = "uid://fye53tti2pfp"
+
+[node name="Vis" type="Sprite2D" parent="."]
+texture = ExtResource("2_k8ygv")

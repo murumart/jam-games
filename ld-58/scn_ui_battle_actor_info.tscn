@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://k1sxya4o3m1h"]
+
+[ext_resource type="Theme" uid="uid://c14kllfa1vr87" path="res://res_thm_main.tres" id="1_y5way"]
+[ext_resource type="Script" uid="uid://6lmiwm1gy32x" path="res://scr_scn_ui_battle_actor_info.gd" id="2_qd5ax"]
+
+[node name="BattleActorInfo" type="PanelContainer"]
+custom_minimum_size = Vector2(30, 0)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_y5way")
+script = ExtResource("2_qd5ax")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "name"
+
+[node name="HealthProgress" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 36.97
