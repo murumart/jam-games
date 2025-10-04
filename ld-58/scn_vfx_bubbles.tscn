@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://q423shvsptbk"]
+
+[ext_resource type="Texture2D" uid="uid://du6vowegd2ifc" path="res://spr_bubble.png" id="1_f5pub"]
+
+[sub_resource type="Curve" id="Curve_5kaii"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.16860464, 51.685394), 0.0, 0.0, 0, 0, Vector2(0.2848837, -29.21347), 0.0, 0.0, 0, 0, Vector2(0.41279072, 11.235962), 0.0, 0.0, 0, 0, Vector2(0.5697674, -11.235931), 0.0, 0.0, 0, 0, Vector2(0.6976744, 15.730347), 0.0, 0.0, 0, 0, Vector2(0.8313953, -11.235931), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[node name="Bubbles" type="CPUParticles2D"]
+texture = ExtResource("1_f5pub")
+lifetime = 12.0
+direction = Vector2(0, -1)
+spread = 12.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+radial_accel_min = -5.03
+tangential_accel_curve = SubResource("Curve_5kaii")
+scale_amount_min = 0.5
