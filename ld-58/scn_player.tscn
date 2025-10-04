@@ -98,7 +98,7 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_xp2ti")
 
@@ -109,4 +109,4 @@ shape = SubResource("RectangleShape2D_xp2ti")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_kk15b")
 animation = &"walk_side"
-frame_progress = 0.47329354
+frame_progress = 0.78430283

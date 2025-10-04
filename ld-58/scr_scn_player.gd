@@ -1,8 +1,14 @@
 class_name Player extends CharacterBody2D
 
 enum Capturer {
-	DIALOGUE = 0b1,
+	DIALOGUE = 0x1,
+	LEVEL_TRANSITION = 0x2,
 }
+
+static var extant: Player # evil singleton bullshit. only one player in scene tree ever
+
+static var _last_animation: StringName
+static var _last_flip: bool
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
@@ -12,7 +18,21 @@ var _capturers := 0
 
 
 func _ready() -> void:
+	if _last_animation:
+		sprite.animation = _last_animation
+	sprite.flip_h = _last_flip
 	sprite.play()
+
+
+func _enter_tree() -> void:
+	assert(extant == null)
+	extant = self
+
+
+func _exit_tree() -> void:
+	_last_animation = sprite.animation
+	_last_flip = sprite.flip_h
+	extant = null
 
 
 func _physics_process(_delta: float) -> void:
@@ -44,7 +64,6 @@ func _process_animation(input: Vector2) -> void:
 		sprite.animation = &"walk_front"
 	elif input.y < 0:
 		sprite.animation = &"walk_back"
-
 
 
 func capture(capturer: Capturer) -> void:

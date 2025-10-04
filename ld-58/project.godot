@@ -28,6 +28,11 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/scale=0.5
 
+[global_group]
+
+player=""
+ui=""
+
 [input]
 
 ui_accept={
